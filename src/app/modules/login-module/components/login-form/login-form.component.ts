@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AuthService } from '../../auth.service';
 
 @Component({
@@ -8,16 +8,23 @@ import { AuthService } from '../../auth.service';
 })
 export class LoginFormComponent implements OnInit {
   user = null;
+  @Output ()
+  change: EventEmitter<Object> = new EventEmitter<Object>();
+  
   constructor(private auth: AuthService) { }
-
+  
   loginWithGoogle() {
-    this.auth.loginWithGoogle();
+    this.auth.loginWithGoogle().then(user=>{
+      this.change.emit({email:user.user.email})
+    });
+    
   }
   loginWithFacebook() {
     this.auth.loginWithFacebook();
   }
   ngOnInit() {
-    this.auth.getAuthState().subscribe(user=>this.user = user);
+    this.auth.getAuthState().subscribe(user=>{this.user = user});
+    
   }
 
 }
