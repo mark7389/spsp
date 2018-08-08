@@ -1,0 +1,33 @@
+/* .loginBtnContainer{
+    display: flex;
+    flex-direction: row;
+    
+    justify-content: flex-end;
+} */
+.loginBtnContainer>button{
+    
+    margin:0.5vw;
+    color:white;
+    background: #03476f;
+    line-height: 3em;
+    font-size: 1em;
+}
+.loginBtnContainer>button:first-child{
+    background: #be0034;
+}
+
+.loginBtnContainer>button:hover{
+    box-shadow: none;
+    opacity: 0.7;
+}
+
+ .main-login mat-card{
+    display: flex;
+    flex-direction: row;
+    background: #35383e;
+    justify-content: center;
+} 
+.main-login img{
+    margin: auto;
+    width:100%;
+}
