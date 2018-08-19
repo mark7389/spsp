@@ -3,7 +3,8 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../../../environments/environment';
 import { NgModule } from '@angular/core';
 import { LoginFormComponent } from './components/login-form/login-form.component';
-import { AuthService } from './auth.service';
+import { AuthService } from './services/auth.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -13,7 +14,7 @@ import { AuthService } from './auth.service';
     imports: [
         AngularFireModule.initializeApp(environment.firebase,'spsp-dev'),
         AngularFireAuthModule,
-        
+        HttpClientModule
        
     ],
     providers: [AuthService],

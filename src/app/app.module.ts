@@ -6,17 +6,41 @@ import { LoginFormComponent } from './modules/login-module/components/login-form
 import { LoginModule } from './modules/login-module/login.module';
 import { MyMaterialModule } from './modules/material-module/material.module';
 
+
+import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './modules/home-module/components/home/home.component';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MenuComponent } from './modules/menu-module/components/menu/menu.component';
+import { MenuModule } from './modules/menu-module/menu.module';
+import { HomeClassComponent } from './modules/home-class-module/components/home-class/home-class.component';
+import { AuthGaurdService } from './shared/auth-gaurd.service';
+const appRoutes: Routes = [
+  {path:'', redirectTo:'login', pathMatch:'full'},
+  {path:'login', component: LoginFormComponent},
+  {path:'home', component: HomeComponent, canActivate:[AuthGaurdService]},
+  {path:"**", redirectTo: ''}
+]
+
 @NgModule({
   declarations: [
     AppComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    HomeComponent,
+    MenuComponent,
+    HomeClassComponent
   ],
   imports: [
+    RouterModule.forRoot(appRoutes),
     BrowserModule,
     LoginModule,
-    MyMaterialModule
+    MyMaterialModule,
+    BrowserAnimationsModule,
+    MenuModule,
+    
+    
   ],
-  providers: [],
+  
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,25 @@
+<div class="classesContainer" >
+
+    <mat-card *ngFor="let service of Services">
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>{{service.name | uppercase}}</mat-panel-title>
+            <mat-panel-description>Expand to View Classes</mat-panel-description>
+          </mat-expansion-panel-header>
+
+            <nav class="homeClassNav">
+                <a  class="classtabs" *ngFor="let class of service.classes"  routerLink="/class/{{class.id}}">
+                  {{class.class | lowercase}}
+                </a>    
+              
+              </nav>
+          
+        </mat-expansion-panel>
+      </mat-accordion>
+    </mat-card>
+
+
+
+
+</div>

@@ -1,4 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
+
+import { LoginFormComponent } from './modules/login-module/components/login-form/login-form.component';
 
 @Component({
   selector: 'app-root',
@@ -7,10 +9,9 @@ import { Component, Input } from '@angular/core';
 })
 export class AppComponent {
   title = 'spsp-attendance';
-  @Input ()
-  user: Object;
-
-  updateFromLogin($event){
-    console.log($event);
-  }
+  //to hold user Object from database
+  
+ 
+  
+  
 }

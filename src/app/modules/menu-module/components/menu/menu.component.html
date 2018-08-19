@@ -1,0 +1,22 @@
+<div class="mainMenu">
+  <mat-toolbar>
+    <span>
+      <button mat-button id="menuButton" (click)='toggle()'>
+        <div class="bar bar1"></div>
+        <div class="bar bar2"></div>
+        <div class="bar bar3"></div>
+      </button>
+    </span>
+    <h1 style="color:#fff"><i>SPSP</i></h1>
+    <button mat-raised-button id="logout" (click)='logOut()'>LogOut</button>
+ </mat-toolbar>
+ <div class="sidenavcontainer" id='sidenav'>
+     <div class="sidenavcontent">
+           <ul class="innerMenu" >
+              <li class="menuItem" *ngFor="let i of MenuItems"><a routerLink="/{{i}}">{{i}}</a></li>
+           </ul> 
+     </div>
+ </div>    
+
+
+</div>

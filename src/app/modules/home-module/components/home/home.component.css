@@ -1,0 +1,14 @@
+
+
+.mainContentView{
+    min-height: 86vh;
+    width:92vw;
+    margin:2vh 2vw;
+    padding:2vh 2vw;
+}
+@media only screen and (max-width:768px){
+    .mainContentView{
+        margin:0;
+        padding:0;
+    }
+}
