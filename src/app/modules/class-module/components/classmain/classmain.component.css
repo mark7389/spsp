@@ -1,0 +1,42 @@
+.main-class-content{
+    min-height: 86vh;
+    width:92vw;
+    margin:2vh 2vw;
+    padding:2vh 2vw;
+}
+.attendees_table{
+    width:100%;
+}
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  .profileImg{
+      width:50%;
+      height: auto;
+  }
+  ::ng-deep .mat-sort-header-container {
+
+      flex-direction: row !important;
+      justify-content: center !important;
+  }
+  .mat-cell i{
+      color:#484848;
+      font-size:16px;
+  }
+  .mat-cell a{
+        padding:6px 4px;
+        border:1px solid #ccc;
+        box-shadow: 0 0 4px rgba(0,0,0,0.2);
+  }
+  td, th {
+    width: 25%;
+    text-align: center;
+  }
+  .mat-header-cell{
+    text-align: center;
+  }
+  .mat-cell,td.mat-cell:last-child, td.mat-footer-cell:last-child, th.mat-header-cell:last-child{
+      padding:12px 4px;
+      
+  }

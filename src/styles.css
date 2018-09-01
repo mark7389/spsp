@@ -5,3 +5,6 @@ body{
     margin:0;
     font-family: 'Lato', sans-serif !important;
 }
+.mat-raised-button, .mat-table{
+    font-family:  'Lato', sans-serif !important;
+}

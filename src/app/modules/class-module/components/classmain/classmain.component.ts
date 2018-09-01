@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ClassDataService } from '../../services/class-data.service';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import { Router } from '@angular/router';
 
 
 
@@ -13,16 +14,17 @@ export class ClassmainComponent implements OnInit {
   public Attendees;
   displayedColumns: string [] = ['avatar','name','dob','editable']
   dataSource: MatTableDataSource<{}[]>
-
+  class_id;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(public cdata:ClassDataService) { 
-
+  constructor(public cdata:ClassDataService, public router:Router) { 
+      this.class_id = this.router.url.split('/')[2];
   }
   getAttendees(){
     this.cdata.getAttendees().subscribe(data=>{
       this.Attendees = data['info'];
+      console.log(this.Attendees);
       this.dataSource = new MatTableDataSource(this.Attendees);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;

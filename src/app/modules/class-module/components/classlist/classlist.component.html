@@ -27,7 +27,7 @@
     <caption> Attendance For: {{date}}</caption>
     <thead>
       <tr>
-        <th>No.</th>
+        <th>Pic</th>
         <th><p style='text-align: center;line-height: 1.5'>Name<br/><small style='border-top: 0.5px solid #fff;margin-top:5px'>Last, First</small></p></th>
         <th>Present ?</th>
       
@@ -35,7 +35,7 @@
     </thead>
     <tbody>
       <tr class="bordered" *ngFor="let attendee of Attendees;index as i;">
-        <td>{{i+1}}</td>
+        <td><img class="profileImg" src="{{attendee.picture ? attendee.picture:'../../../../../assets/Images/icons8-customer-96.png'}}"></td>
         <td>{{attendee.last_name}} , {{attendee.first_name}} </td>
         
         <td>

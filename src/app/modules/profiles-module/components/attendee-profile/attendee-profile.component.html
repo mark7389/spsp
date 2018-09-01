@@ -1,3 +1,41 @@
-<p>
-  attendee-profile works!
-</p>
+<app-menu></app-menu>
+<div class="main-profile-content">
+  <div class="TopBar">
+    <div class="profile_img">
+    
+      <img src="../../../../../assets/Images/icons8-customer-96.png">
+      <br>
+      <input  type="file" name="profile-img">
+      <label for="profile-img">Choose a file</label>
+      <button mat-raised-button type="submit" id="submitProfileImg">Update</button>
+      
+      <ul class="underImg">
+      <li>Guardian: 
+          <ul>
+            <li>Name: {{Guardian ? Guardian.first_name+' '+Guardian.last_name:''}}</li>
+            <li>Phone: {{Guardian && Guardian.phone_number ? Guardian.phone_number:'unavailable'}}</li>
+            <li>Email: {{Guardian && Guardian.email ? Guardian.email:'unavailable'}}</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="topInfo">
+      <ul>
+        <li>Name: {{Attendee ? Attendee.first_name+' '+Attendee.last_name:''}}</li>
+        <li>DOB: {{Attendee && Attendee.date_of_birth ? Attendee.date_of_birth:'unavailable'}}</li>
+        <li>Active: {{Attendee && Attendee.active ? 'yes':'no'}}</li>
+        <li>Address: {{Attendee && Attendee.address ? Attendee.address:' unavailable'}} </li>
+        
+      </ul>
+    </div>
+  </div>
+  <div class="attendee_notes">
+    <div class="notes_header">
+      <h3>Notes</h3>
+      <button mat-mini-fab type="submit" class="add_note"><i class="fas fa-plus"></i></button>
+    </div>
+    <div class="note" *ngFor='let note of Notes'>
+      <!-- {{note.note}} -->
+    </div>
+  </div>
+</div>

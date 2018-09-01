@@ -25,6 +25,7 @@ const appRoutes: Routes = [
   {path:'login', component: LoginFormComponent},
   {path: 'attendance/:id', component: ClasslistComponent, canActivate:[AuthGaurdService]},
   {path: 'class/:id', component: ClassmainComponent, canActivate:[AuthGaurdService]},
+  {path: 'attendee/:class_id/:id', component: AttendeeProfileComponent, canActivate:[AuthGaurdService]},
   {path:'home', component: HomeComponent, canActivate:[AuthGaurdService]},
   {path:"**", redirectTo: ''}
 ]
