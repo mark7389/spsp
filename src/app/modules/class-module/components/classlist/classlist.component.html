@@ -1,0 +1,57 @@
+<app-menu></app-menu>
+<div class="datePickerContainer">
+  <!-- <mat-form-field>
+      <mat-select placeholder="view previous classes" panelClass="dateOptions" [(value)]="date" >
+        
+        <mat-option #dateOption *ngFor='let date of previousClassDates;' [value]="date" (click)='handlePrevious(dateOption.value)'>
+            {{date | date:'EEE MMM yyyy'}}
+          </mat-option>
+       </mat-select>
+       
+        
+       
+  </mat-form-field> -->
+  <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="Choose a date" (dateInput)="handleDatePicker($event)">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker startView="month" [startAt]="Today"></mat-datepicker>
+  </mat-form-field>
+    
+</div>
+<div class="searchClassContainer">
+  <input type="text" (keyup)="searchFunction($event)" id="searchInput" placeholder="find someone..." />
+</div>
+<div class="attendees_container">
+  
+  <table class="attendee_table" id="aTable">
+    <caption> Attendance For: {{date}}</caption>
+    <thead>
+      <tr>
+        <th>No.</th>
+        <th><p style='text-align: center;line-height: 1.5'>Name<br/><small style='border-top: 0.5px solid #fff;margin-top:5px'>Last, First</small></p></th>
+        <th>Present ?</th>
+      
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="bordered" *ngFor="let attendee of Attendees;index as i;">
+        <td>{{i+1}}</td>
+        <td>{{attendee.last_name}} , {{attendee.first_name}} </td>
+        
+        <td>
+          
+        <div class="checkbox-container">
+            <input #present type="checkbox" id={{attendee.attendee_id}} value="present" (click)='buildAttendance(present.id,present.checked)'/>
+            <span class="{{Attendance[i] && Attendance[i].present ? 'checkmark show':'checkmark'}}" id="{{attendee.attendee_id}}-span"></span>
+        </div>
+      
+        
+        </td>
+      </tr>
+    </tbody>
+</table>
+
+</div>
+<div class="saveButtonContainer">
+    <button mat-raised-button class="submit_attendance" type='submit' (click)="submitAttendance()">Save</button>
+</div>

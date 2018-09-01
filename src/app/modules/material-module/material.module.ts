@@ -8,7 +8,12 @@ import {MatButtonModule,
         MatCardModule,
         MatTableModule,
         MatSortModule,
-        MatExpansionModule
+        MatExpansionModule,
+        MatSelectModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatInputModule,
+        MatSnackBarModule
         } from '@angular/material';
 
 
@@ -21,7 +26,12 @@ import {MatButtonModule,
                 MatCardModule,
                 MatTableModule,
                 MatSortModule,
-                MatExpansionModule],
+                MatExpansionModule,
+                MatSelectModule,
+                MatDatepickerModule,
+                MatNativeDateModule,
+                MatInputModule,
+                MatSnackBarModule],
         exports:[MatButtonModule, 
                 MatTabsModule,
                 MatToolbarModule, 
@@ -30,7 +40,12 @@ import {MatButtonModule,
                 MatCardModule,
                 MatTableModule,
                 MatSortModule,
-                MatExpansionModule]
+                MatExpansionModule,
+                MatSelectModule,
+                MatDatepickerModule,
+                MatNativeDateModule,
+                MatInputModule,
+                MatSnackBarModule]
 
 })
 

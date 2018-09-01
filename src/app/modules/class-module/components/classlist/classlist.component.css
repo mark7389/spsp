@@ -1,0 +1,168 @@
+tr{
+    display: flex;
+    flex-direction:row;
+    box-sizing: content-box;
+    justify-content: flex-start;
+    border-bottom:1px solid rgba(53, 53, 62,0.4);
+    width: 100%;
+    text-align: left;
+}
+.saveButtonContainer{
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+
+}
+
+.datePickerContainer,.searchClassContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    flex-wrap: wrap;
+    padding:16px;
+}
+.searchClassContainer input{
+    color:#35353e;
+    box-shadow: 0 0 4px rgba(0,0,0,0.1);
+    background-image: url('../../../../../assets/Images/search-3-32.png'); 
+    background-position: 2px 2px; /* Position the search icon */
+    background-repeat: no-repeat; /* Do not repeat the icon image */
+    
+    width: 100%; /* Full-width */
+    font-size: 16px; /* Increase font-size */
+    padding: 12px 20px 12px 40px; /* Add some padding */
+    border: 1px solid #ddd; /* Add a grey border */
+    margin-bottom: 12px; /* Add some space below the input */
+
+}
+.datePickerContainer mat-form-field, .datePickerContainer h5{
+    width:40%;
+    padding: 4px;
+    margin:0 2px;
+    
+}
+
+.datePickerContainer h5{
+    text-align: right;
+    color: #35353e;
+}
+.saveButtonContainer button{
+    width:50%;
+    margin:auto;
+    background: #00a4e2;
+    color: #f1f1f1;
+    font-size:22px;
+    opacity: 0.8;
+    align-content: center;
+    line-height: 2em;
+    vertical-align: middle;
+}
+.saveButtonContainer button:hover{
+    box-shadow: none;
+    opacity: 1;
+}
+tr:nth-child(even){
+    background: rgba(197, 196, 193, 0.8);
+}
+.attendees_container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding:16px;
+}
+table{
+   
+    box-shadow: 0 0 4px 2px rgba(0,0,0,0.1);
+    border-radius:4px;
+    padding:4px;
+    border:1px solid rgba(92,92,92,0.2);
+    width:100%;
+    min-height: 20vh;
+}
+caption{
+    background: #00a4e2;
+    color:#fff;
+    box-shadow: 0 0 4px 2px rgba(0,0,0,0.1);
+    border-radius:4px;
+    border: 1px solid #fff;  
+}
+thead{
+    background: #35353e;
+    color:#f1f1f1;
+    box-shadow: 0 0 4px 2px #f1f1f1;
+}
+.attendees_container th, .attendees_container td{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    vertical-align: middle;
+    line-height: 1;
+    width:33.33%;
+    flex-wrap: wrap;
+    text-align: left;
+    border-right: 1px solid rgba(92,92,92,0.2);
+    padding:0.7vh 0.25vw;
+}
+/* checkbox */
+.attendees_container .checkbox-container{
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    height: 25px;
+    width: 25px;
+    margin:auto 12px;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.attendees_container input[type='checkbox']{
+    position: absolute;
+    top:0;
+    left:0;
+    width:25px;
+    height: 25px;
+    z-index:100;
+    opacity: 0;
+    cursor: pointer;
+}
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    border:0.5px solid #35353e;
+    background-color: #fff;
+    box-shadow: inset 0 0 5px 4px rgba(146, 145, 145, 0.1);
+}
+.checkbox-container:hover input[type='checkbox'] ~ .checkmark {
+    background-color: #ccc;
+}
+.checkbox-container input[type='checkbox'] ~ .show {
+    background-color: #32cc1d;
+}
+.show:after {
+    content: "";
+    position: absolute;
+}
+
+.checkbox-container .show:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.attendees_container th:last-child, .attendees_container td:last-child{
+    border:none;
+}

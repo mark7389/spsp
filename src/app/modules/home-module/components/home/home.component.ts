@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
       this.getClasses.fetchClasses().subscribe(data=>{
         this.classArray = data;
-        
+        console.log(data);
       })
   }
 

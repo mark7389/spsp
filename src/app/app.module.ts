@@ -15,9 +15,16 @@ import { MenuComponent } from './modules/menu-module/components/menu/menu.compon
 import { MenuModule } from './modules/menu-module/menu.module';
 import { HomeClassComponent } from './modules/home-class-module/components/home-class/home-class.component';
 import { AuthGaurdService } from './shared/auth-gaurd.service';
+import { ClasslistComponent } from './modules/class-module/components/classlist/classlist.component';
+import { ClassmainComponent } from './modules/class-module/components/classmain/classmain.component';
+import { AttendeeProfileComponent } from './modules/profiles-module/components/attendee-profile/attendee-profile.component';
+import { UserProfileComponent } from './modules/profiles-module/components/user-profile/user-profile.component';
+
 const appRoutes: Routes = [
   {path:'', redirectTo:'login', pathMatch:'full'},
   {path:'login', component: LoginFormComponent},
+  {path: 'attendance/:id', component: ClasslistComponent, canActivate:[AuthGaurdService]},
+  {path: 'class/:id', component: ClassmainComponent, canActivate:[AuthGaurdService]},
   {path:'home', component: HomeComponent, canActivate:[AuthGaurdService]},
   {path:"**", redirectTo: ''}
 ]
@@ -28,7 +35,11 @@ const appRoutes: Routes = [
     LoginFormComponent,
     HomeComponent,
     MenuComponent,
-    HomeClassComponent
+    HomeClassComponent,
+    ClasslistComponent,
+    ClassmainComponent,
+    AttendeeProfileComponent,
+    UserProfileComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

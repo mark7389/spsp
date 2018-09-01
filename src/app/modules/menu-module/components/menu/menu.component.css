@@ -1,6 +1,14 @@
 mat-toolbar{
     background: #35353e;
 }
+
+.mainMenu h1 a{
+    text-decoration: none;
+    color:#35353e;
+    padding:12px;
+    background:linear-gradient(50deg,#fff,#f1f1f1);
+    box-shadow: 0 0 2px rgba(245,245,245,0.5);
+}
 .bar{
     width: 35px;
     height: 5px;
@@ -57,7 +65,7 @@ mat-toolbar button{
     justify-content: center;
     
 }
-.menuItem a {
+.menuItem a{
     text-decoration: none;
     width:100%;
     background: #fff;

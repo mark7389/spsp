@@ -10,7 +10,7 @@ export class GetClassesServicesService {
   fetchClasses(){
     let userToken = localStorage.getItem('user')
     if(userToken){
-       return this.http.get(`/api/modify/classes/${userToken}/`);
+       return this.http.get(`/api/modify/classesservices/${userToken}/`);
     }
   }
 }
