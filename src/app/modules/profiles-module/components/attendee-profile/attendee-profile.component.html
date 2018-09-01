@@ -10,11 +10,11 @@
       <button mat-raised-button type="submit" id="submitProfileImg">Update</button>
       
       <ul class="underImg">
-      <li>Guardian: 
-          <ul>
-            <li>Name: {{Guardian ? Guardian.first_name+' '+Guardian.last_name:''}}</li>
-            <li>Phone: {{Guardian && Guardian.phone_number ? Guardian.phone_number:'unavailable'}}</li>
-            <li>Email: {{Guardian && Guardian.email ? Guardian.email:'unavailable'}}</li>
+      <li class="guardians">Guardians: 
+          <ul *ngFor="let g of Guardian">
+            <li>Name: {{g ? g.first_name+' '+g.last_name:''}}</li>
+            <li>Phone: {{g && g.phone_number ? g.phone_number:'unavailable'}}</li>
+            <li>Email: {{g && g.email ? g.email:'unavailable'}}</li>
           </ul>
         </li>
       </ul>

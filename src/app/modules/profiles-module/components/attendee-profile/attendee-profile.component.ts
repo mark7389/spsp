@@ -16,7 +16,7 @@ export class AttendeeProfileComponent implements OnInit {
         if(data){
           console.log(data);
           this.Attendee = data['info'][0];
-          this.Guardian = data['guardian'][0];
+          this.Guardian = data['guardian'];
           this.Notes = data['notes'];
         } 
       })

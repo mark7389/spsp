@@ -1,10 +1,11 @@
 mat-expansion-panel-header{
     margin:2px auto;
 }
-mat-expansion-panel{
+.mat-expansion-panel{
     display: flex;
     flex-direction: column;
-    flex-wrap:wrap;
+    border:16px solid #35353e;
+    width: 75vw;
 }
 .classtabs{
     display: block;
@@ -32,22 +33,18 @@ mat-expansion-panel{
     min-height: 2vh;
     padding:16px;
 }
-mat-card{
-    width:auto;
-   
-    display: flex;
-    flex-wrap: wrap;
-    margin:1vw;
-    background: #35353e;
-    border-radius: 4px;
+.mat-accordion{
+    
+    margin: 5px auto;
+    
 }
+
 .classesContainer{
     min-height: 82vh;
     width:80%;
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: column;
+    align-items: flex-start;
     margin: auto;
 }
 .classesContainer a{
@@ -56,15 +53,15 @@ mat-card{
 @media only screen and (max-width:768px){
     .classesContainer{
         flex-direction: column;
-        justify-content: flex-start;
+        align-items: center;
         width:100%;
+        margin: auto;
     }
-    mat-card{
-        width:90vw;
-        
-        
+    .mainContentView{
+        margin:0;
     }
-    mat-expansion-panel{
+    .mat-expansion-panel{
         width:90vw;
+        margin: auto;
     }
 }
