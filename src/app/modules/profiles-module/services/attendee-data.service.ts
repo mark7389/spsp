@@ -9,10 +9,11 @@ import { Router } from '@angular/router';
 export class AttendeeDataService {
   private Token = localStorage.getItem('user');
   constructor(private http:HttpClient, private router:Router) { }
-
+  
   getAttendee(){
-    let id = this.router.url.split('/')[3];
-    return this.http.get(`/api/modify/attendee/${this.Token}/${id}`);
+    let attendeeId = this.router.url.split('/')[3];
+    let classId = this.router.url.split('/')[2];
+    return this.http.get(`/api/modify/attendee/${this.Token}/${attendeeId}/${classId}`);
   }
   addNote(note){
     let id = this.router.url.split('/')[3];
@@ -20,7 +21,8 @@ export class AttendeeDataService {
     let date = new Date().toISOString();
     return this.http.post(`/api/modify/note/${this.Token}`,{attendee_id:id,class_id:classId,note:note,note_date:date});
   }
-  updateImage(Img){
-
+  updateGuardian(){
+    
   }
+  
 }

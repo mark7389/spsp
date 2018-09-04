@@ -19,6 +19,7 @@ import { ClasslistComponent } from './modules/class-module/components/classlist/
 import { ClassmainComponent } from './modules/class-module/components/classmain/classmain.component';
 import { AttendeeProfileComponent } from './modules/profiles-module/components/attendee-profile/attendee-profile.component';
 import { UserProfileComponent } from './modules/profiles-module/components/user-profile/user-profile.component';
+import { AttendeeformComponent } from './modules/forms-module/components/attendeeform/attendeeform.component';
 
 const appRoutes: Routes = [
   {path:'', redirectTo:'login', pathMatch:'full'},
@@ -40,7 +41,8 @@ const appRoutes: Routes = [
     ClasslistComponent,
     ClassmainComponent,
     AttendeeProfileComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    AttendeeformComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
@@ -52,7 +54,9 @@ const appRoutes: Routes = [
     
     
   ],
-  
+  entryComponents:[
+    AttendeeformComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

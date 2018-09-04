@@ -1,7 +1,7 @@
 <div class="mainMenu">
   <mat-toolbar>
     <span *ngIf="url[1] === 'attendance' || url[1] === 'class' || url[1] === 'attendee'">
-      <button mat-button id="menuButton" (click)='toggle()'>
+      <button mat-button id="menuButton" (click)='toggle($event)'>
         <div class="bar bar1"></div>
         <div class="bar bar2"></div>
         <div class="bar bar3"></div>
@@ -10,14 +10,15 @@
     <h1 style="color:#fff"><a routerLink="/home"><i class="fas fa-home"></i></a></h1>
     <button mat-raised-button id="logout" (click)='logOut()'>LogOut</button>
  </mat-toolbar>
- <div class="sidenavcontainer" id='sidenav'>
-     <div class="sidenavcontent">
+ <div class="sidenavcontainer" id='sidenav' (click)='toggle($event)'>
+     <div class="sidenavcontent" (click)='toggle($event)'>
         
            <ul class="innerMenu" >
-              <li class="menuItem" *ngFor="let i of MenuItems"><a routerLink="/class/{{url[2]}}">{{i | uppercase}}</a></li>
-           </ul> 
+              
+              <li class="menuItem" *ngFor="let i of MenuItems;index as k"><a routerLink="/{{subUrl[k] | lowercase }}/{{url[2]}}">{{i | uppercase}}</a></li>
+            </ul> 
+
      </div>
  </div>    
-
 
 </div>

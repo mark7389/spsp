@@ -1,0 +1,8 @@
+.addAttendeeForm{
+    display: flex;
+    flex-direction: column;
+}
+#submitAttendee{
+    background: #004ae2;
+    color:#fff;
+}

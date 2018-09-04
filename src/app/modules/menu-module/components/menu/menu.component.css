@@ -41,16 +41,23 @@ mat-toolbar button{
 .sidenavcontainer {
     position: absolute;
     top:64px;
-    padding:16px 8px;
-    border-top:1px solid #48484875;
-    box-shadow:0 0 5px 2px rgba(0,0,0,0.1);
     left:0;
-    width:15vw;
+    width:100%;
     visibility: hidden;
     transition: visibility 250ms ease-in-out;
-    z-index: 99;
-    height: 85vh;
+    
+    background: rgba(0,0,0,0.1);
+    
+}
+.sidenavcontent{
+    width:25%;
     background: #35353e;
+    height: 85vh;
+    box-shadow:0 0 5px 2px rgba(0,0,0,0.1);
+    padding:16px 8px;
+    border-top:1px solid #48484875;
+    z-index: 2099;
+   
 }
 .show{
     visibility: visible;  
@@ -70,10 +77,11 @@ mat-toolbar button{
     width:100%;
     background: #fff;
     color:#484848;
-    font-size:18px;
+    font-size:12px;
     text-align: center;
     padding:15px;
     line-height: 1.5;
+    z-index:99;
 }
 .menuItem a:hover{
     
@@ -93,11 +101,11 @@ mat-toolbar button{
     margin:1.5px;
 }
 @media only screen and (max-width:768px){
-    .show{
+    .show,.sidenavcontent{
         width:90vw;
 
     }
     .sidenavcontainer{
-        top:60px;
+        top:56px;
     }
 }

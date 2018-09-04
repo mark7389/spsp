@@ -13,7 +13,9 @@ import {MatButtonModule,
         MatDatepickerModule,
         MatNativeDateModule,
         MatInputModule,
-        MatSnackBarModule
+        MatSnackBarModule,
+        MatTooltipModule,
+        MatBottomSheetModule
         } from '@angular/material';
 
 
@@ -31,7 +33,9 @@ import {MatButtonModule,
                 MatDatepickerModule,
                 MatNativeDateModule,
                 MatInputModule,
-                MatSnackBarModule],
+                MatSnackBarModule,
+                MatTooltipModule,
+                MatBottomSheetModule],
         exports:[MatButtonModule, 
                 MatTabsModule,
                 MatToolbarModule, 
@@ -45,7 +49,9 @@ import {MatButtonModule,
                 MatDatepickerModule,
                 MatNativeDateModule,
                 MatInputModule,
-                MatSnackBarModule]
+                MatSnackBarModule,
+                MatTooltipModule,
+                MatBottomSheetModule]
 
 })
 

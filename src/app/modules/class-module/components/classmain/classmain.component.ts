@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ClassDataService } from '../../services/class-data.service';
-import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {MatPaginator, MatSort, MatTableDataSource,MatBottomSheet} from '@angular/material';
 import { Router } from '@angular/router';
+import { AttendeeformComponent } from '../../../forms-module/components/attendeeform/attendeeform.component';
 
 
 
@@ -18,8 +19,12 @@ export class ClassmainComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(public cdata:ClassDataService, public router:Router) { 
+  constructor(public cdata:ClassDataService, public router:Router, private bottomsheet: MatBottomSheet) { 
       this.class_id = this.router.url.split('/')[2];
+      
+  }
+  showBottomSheet():void {
+       this.bottomsheet.open(AttendeeformComponent);
   }
   getAttendees(){
     this.cdata.getAttendees().subscribe(data=>{

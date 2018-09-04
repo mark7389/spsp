@@ -7,6 +7,14 @@
 .attendees_table{
     width:100%;
 }
+.add_attendee{
+    position: absolute;
+    right:2%;
+    top:20%;
+    margin:5px;
+    color:#fff;
+    background: #00a4e2;
+}
 .mat-form-field {
     font-size: 14px;
     width: 100%;

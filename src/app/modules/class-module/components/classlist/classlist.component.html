@@ -35,8 +35,8 @@
     </thead>
     <tbody>
       <tr class="bordered" *ngFor="let attendee of Attendees;index as i;">
-        <td><img class="profileImg" src="{{attendee.picture ? attendee.picture:'../../../../../assets/Images/icons8-customer-96.png'}}"></td>
-        <td>{{attendee.last_name}} , {{attendee.first_name}} </td>
+        <td><img class="profileImg" [src]="attendee.picture ? sanitizer(attendee.picture):'../../../../../assets/Images/icons8-customer-96.png'"></td>
+        <td>{{attendee.last_name}}  {{attendee.first_name}} </td>
         
         <td>
           

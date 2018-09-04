@@ -1,0 +1,25 @@
+<div class="addAttendeeForm">
+  <mat-form-field appearance="fill">
+    <input matInput placeholder="first name" name="first_name" [(value)]="Attendee.first_name" (change)="handleInputChange($event.target.name,$event.target.value)">
+    
+  </mat-form-field>
+  <mat-form-field  appearance="fill">
+      <input matInput placeholder="last name" name="last_name" [(value)]="Attendee.last_name" (change)="handleInputChange($event.target.name,$event.target.value)">
+      
+  </mat-form-field>
+  <mat-form-field  appearance="fill">
+      <input matInput  [matDatepicker]="picker" name="date_of_birth" placeholder="Date of Birth" [(value)]="Attendee.date_of_birth" (dateInput)="handleDateChange($event)">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      
+  </mat-form-field>
+  <mat-form-field  appearance="fill">
+      <textarea matInput placeholder="address" name="address" [(value)]="Attendee.address" (change)="handleInputChange($event.target.name,$event.target.value)"></textarea>
+      
+  </mat-form-field>
+  <label for="picture">Upload a Picture</label>
+  <input type="file" name="picture" (change)="handlePictureUpload($event)">
+  <br>
+  <button mat-raised-button type="submit" id="submitAttendee" (click)="addAttendee()">Save</button>
+  <br>
+</div>

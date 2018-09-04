@@ -8,16 +8,16 @@ import { AttendeeDataService } from '../../services/attendee-data.service';
 })
 export class AttendeeProfileComponent implements OnInit {
   Attendee;
-  Guardian;
+  Guardians;
   Notes;
   constructor(public cdata:AttendeeDataService) { }
   getAttendee(){
       this.cdata.getAttendee().subscribe(data=>{
         if(data){
           console.log(data);
-          this.Attendee = data['info'][0];
-          this.Guardian = data['guardian'];
-          this.Notes = data['notes'];
+          this.Attendee = data['info'];
+          this.Guardians = data['info']['guardians'];
+          this.Notes = data['info']['notes'];
         } 
       })
   }

@@ -10,11 +10,14 @@ import { Router } from '@angular/router';
 export class MenuComponent implements OnInit {
   public MenuItems:[string];
   public url;
+  public subUrl;
   constructor(public getMenu:GetmenuitemsService,public auth:AuthService,public router:Router) { }
-  toggle(){
-    document.getElementById('menuButton').classList.toggle('change');
-    document.getElementById('sidenav').classList.toggle('show');
+  toggle($event){
     
+    document.getElementById('menuButton').classList.toggle('change');
+    document.getElementById('sidenav').classList.toggle('show'); 
+    
+      
  }
  logOut(){
   this.auth.logout();
@@ -25,7 +28,9 @@ export class MenuComponent implements OnInit {
       
       this.getMenu.fetchMenuItems().subscribe(data=>{
         this.MenuItems = data[0]["menu_items"].split(',');
-       
+        this.subUrl = this.MenuItems.map(elem=>{
+            return elem.split(" ")[1];
+        })
       })
   }
 

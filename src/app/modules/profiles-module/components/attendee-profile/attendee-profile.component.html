@@ -1,41 +1,49 @@
 <app-menu></app-menu>
 <div class="main-profile-content">
-  <div class="TopBar">
+  <div class="container-profile">
+    
+   
+    <br>
     <div class="profile_img">
     
       <img src="../../../../../assets/Images/icons8-customer-96.png">
+    </div>
+      <h3>{{Attendee ? Attendee.first_name+' '+Attendee.last_name:''}}</h3>
+      <span><i class="fas fa-birthday-cake"></i> Born On {{Attendee && Attendee.date_of_birth ? (Attendee.date_of_birth | date:"dd/MM/yy"):'unavailable'}}</span>
+      <span><i class="fas fa-phone-square"></i> {{Attendee && Attendee.phone_number ? Attendee.phone_number:'unavailable'}}</span>
+      <span><i class="fas fa-at"></i> {{Attendee && Attendee.email ? Attendee.email:'unavailable'}}</span>
+      <!-- <span>Active: {{Attendee && Attendee.active ? 'yes':'no'}}</span> -->
+      <span><i class="fas fa-address-card"></i> {{Attendee && Attendee.address ? Attendee.address:' unavailable'}} </span>
       <br>
-      <input  type="file" name="profile-img">
-      <label for="profile-img">Choose a file</label>
-      <button mat-raised-button type="submit" id="submitProfileImg">Update</button>
-      
-      <ul class="underImg">
-      <li class="guardians">Guardians: 
-          <ul *ngFor="let g of Guardian">
-            <li>Name: {{g ? g.first_name+' '+g.last_name:''}}</li>
-            <li>Phone: {{g && g.phone_number ? g.phone_number:'unavailable'}}</li>
-            <li>Email: {{g && g.email ? g.email:'unavailable'}}</li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-    <div class="topInfo">
-      <ul>
-        <li>Name: {{Attendee ? Attendee.first_name+' '+Attendee.last_name:''}}</li>
-        <li>DOB: {{Attendee && Attendee.date_of_birth ? Attendee.date_of_birth:'unavailable'}}</li>
-        <li>Active: {{Attendee && Attendee.active ? 'yes':'no'}}</li>
-        <li>Address: {{Attendee && Attendee.address ? Attendee.address:' unavailable'}} </li>
-        
-      </ul>
-    </div>
+      <div class="editBtns">
+          <button mat-raised-button>Edit Attendee</button>
+          <button mat-raised-button>Edit Guardians</button>
+      </div>
+      <br>
+      <div class="separator"><h4>Guardians</h4></div>   
+      <p *ngIf="Guardians ? (Guardians.length < 1):false">No Info</p>
+       <div *ngFor="let g of Guardians" class="parentInfo">
+            <span><h3>{{g && g.relationship ? g.relationship: 'unavailable'}} </h3></span>
+            <span>{{g ? g.first_name+' '+g.last_name:''}}</span>
+            <span><i class="fas fa-phone-square"></i> {{g && g.phone_number ? g.phone_number:'unavailable'}}</span>
+            <span><i class="fas fa-at"></i> {{g && g.email ? g.email:'unavailable'}}</span>
+            <span><i class="fas fa-address-card"></i> {{g && g.address ? g.address:' unavailable'}} </span>
+           <br>
+       </div>
+       <div class="separator"><h4>Notes</h4>
+       </div> 
+       <br>
+       <div class="attendee_notes">
+          <div class="notes_header">
+              <button mat-mini-fab matTooltip="add note" matTooltipPosition="above" type="submit" class="add_note"><i class="fas fa-plus"></i></button>
+            
+            
+          </div>
+          <div class="note" *ngFor='let note of Notes'>
+              <p>{{note.note_date}}</p>
+              <p>{{note.note}}</p>
+          </div>
+        </div>
+      </div>
   </div>
-  <div class="attendee_notes">
-    <div class="notes_header">
-      <h3>Notes</h3>
-      <button mat-mini-fab type="submit" class="add_note"><i class="fas fa-plus"></i></button>
-    </div>
-    <div class="note" *ngFor='let note of Notes'>
-      <!-- {{note.note}} -->
-    </div>
-  </div>
-</div>
+  

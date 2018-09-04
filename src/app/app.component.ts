@@ -1,17 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, HostListener, AfterViewInit } from '@angular/core';
 
-import { LoginFormComponent } from './modules/login-module/components/login-form/login-form.component';
+import { MenuComponent } from './modules/menu-module/components/menu/menu.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit{
   title = 'spsp-attendance';
-  //to hold user Object from database
   
- 
-  
+  ngAfterViewInit(){
+  }
   
 }

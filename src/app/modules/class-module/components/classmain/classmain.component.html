@@ -3,6 +3,8 @@
   <mat-form-field class="searchFilter">
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
   </mat-form-field>
+  <button mat-mini-fab matTooltip="add attendee" matTooltipPosition="above" type="submit" class="add_attendee" (click)="showBottomSheet()"><i class="fas fa-plus"></i></button>
+  <br>
   <div class="mat-elevation-z2">
       <table mat-table [dataSource]="dataSource" matSort class="attendees_table">
             <ng-container matColumnDef="avatar">
@@ -17,7 +19,7 @@
 
             <ng-container matColumnDef="dob">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> DOB </th>
-                    <td mat-cell *matCellDef="let row">{{row.date_of_birth ? row.date_of_birth:"unavailable"}}</td>
+                    <td mat-cell *matCellDef="let row">{{row.date_of_birth ? (row.date_of_birth | date:"dd/MM/yy"):"unavailable"}}</td>
             </ng-container>
 
             <ng-container matColumnDef="editable">
