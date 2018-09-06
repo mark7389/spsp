@@ -16,18 +16,20 @@
       <span><i class="fas fa-address-card"></i> {{Attendee && Attendee.address ? Attendee.address:' unavailable'}} </span>
       <br>
       <div class="editBtns">
-          <button mat-raised-button>Edit Attendee</button>
-          <button mat-raised-button>Edit Guardians</button>
+          <button mat-raised-button (click)="editAttendee()">Edit Attendee</button>
+          <button mat-raised-button (click)="addGuardian()">Add Guardian</button>
       </div>
       <br>
       <div class="separator"><h4>Guardians</h4></div>   
       <p *ngIf="Guardians ? (Guardians.length < 1):false">No Info</p>
-       <div *ngFor="let g of Guardians" class="parentInfo">
+       <div *ngFor="let g of Guardians;index as i" class="parentInfo">
             <span><h3>{{g && g.relationship ? g.relationship: 'unavailable'}} </h3></span>
             <span>{{g ? g.first_name+' '+g.last_name:''}}</span>
             <span><i class="fas fa-phone-square"></i> {{g && g.phone_number ? g.phone_number:'unavailable'}}</span>
             <span><i class="fas fa-at"></i> {{g && g.email ? g.email:'unavailable'}}</span>
             <span><i class="fas fa-address-card"></i> {{g && g.address ? g.address:' unavailable'}} </span>
+           <br>
+           <button  mat-raised-button  id="index-{{i}}" (click)="editGuardian(i)">Edit Guardian</button>
            <br>
        </div>
        <div class="separator"><h4>Notes</h4>
@@ -35,9 +37,7 @@
        <br>
        <div class="attendee_notes">
           <div class="notes_header">
-              <button mat-mini-fab matTooltip="add note" matTooltipPosition="above" type="submit" class="add_note"><i class="fas fa-plus"></i></button>
-            
-            
+              <button mat-mini-fab matTooltip="add note" matTooltipPosition="above" type="submit" class="add_note" (click)="addNote()"><i class="fas fa-plus"></i></button>
           </div>
           <div class="note" *ngFor='let note of Notes'>
               <p>{{note.note_date}}</p>

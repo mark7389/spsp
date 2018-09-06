@@ -1,25 +1,59 @@
-<div class="addAttendeeForm">
+
+<form class="addAttendeeForm" [formGroup]="Attendee">
   <mat-form-field appearance="fill">
-    <input matInput placeholder="first name" name="first_name" [(value)]="Attendee.first_name" (change)="handleInputChange($event.target.name,$event.target.value)">
-    
+    <input matInput placeholder="first name" name="first_name" formControlName="first_name" >
+    <mat-error *ngIf="Attendee.get('first_name').hasError('required') || Attendee.get('first_name').hasError('pattern')">{{getErrorMessage(Attendee.controls.first_name)}}</mat-error>
   </mat-form-field>
   <mat-form-field  appearance="fill">
-      <input matInput placeholder="last name" name="last_name" [(value)]="Attendee.last_name" (change)="handleInputChange($event.target.name,$event.target.value)">
-      
+      <input matInput placeholder="last name" name="last_name" formControlName="last_name" >
+      <mat-error *ngIf="Attendee.get('last_name').hasError('required') || Attendee.get('last_name').hasError('pattern')">{{getErrorMessage(Attendee.controls.last_name)}}</mat-error>
   </mat-form-field>
   <mat-form-field  appearance="fill">
-      <input matInput  [matDatepicker]="picker" name="date_of_birth" placeholder="Date of Birth" [(value)]="Attendee.date_of_birth" (dateInput)="handleDateChange($event)">
+    <input matInput placeholder="email" type="email" name="email" formControlName="email" >
+    <mat-error *ngIf="Attendee.get('email').hasError('email') || Attendee.get('email').hasError('required')">{{getErrorMessage(Attendee.controls.email)}}</mat-error>
+</mat-form-field>
+<mat-form-field  appearance="fill">
+    <input matInput placeholder="cell phone" type="tel" name="cell_phone" formControlName="cell_phone" >
+    <mat-error *ngIf="Attendee.get('cell_phone').hasError('maxLength')
+    || Attendee.get('cell_phone').hasError('pattern')">{{getErrorMessage(Attendee.controls.cell_phone)}}</mat-error>
+</mat-form-field>
+<mat-form-field  appearance="fill">
+    <input matInput placeholder="home phone" name="home_phone" formControlName="home_phone" >
+    <mat-error *ngIf="Attendee.get('home_phone').hasError('maxLength')
+    || Attendee.get('home_phone').hasError('pattern')">{{getErrorMessage(Attendee.controls.home_phone)}}</mat-error>
+</mat-form-field>
+  <mat-form-field  appearance="fill">
+      <input matInput [matDatepicker]="picker" name="date_of_birth" placeholder="Date of Birth" formControlName="date_of_birth" (dateChange)="dateFormatter()">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-      
+      <mat-datepicker  touchUi #picker></mat-datepicker>
+      <mat-error *ngIf="Attendee.get('date_of_birth').hasError('required')">{{getErrorMessage(Attendee.controls.date_of_birth)}}</mat-error>
   </mat-form-field>
   <mat-form-field  appearance="fill">
-      <textarea matInput placeholder="address" name="address" [(value)]="Attendee.address" (change)="handleInputChange($event.target.name,$event.target.value)"></textarea>
-      
+    <input matInput placeholder="allergies" name="allergies" formControlName="allergies" >
+    <mat-error *ngIf="Attendee.get('allergies').hasError('pattern')">{{getErrorMessage(Attendee.controls.allergies)}}</mat-error>
+</mat-form-field>
+<mat-form-field  appearance="fill">
+    <mat-select placeholder="gender" name="gender" formControlName="gender" >
+            <mat-option value="M">Male</mat-option>
+            <mat-option value="F">Female</mat-option>
+    </mat-select>
+    <mat-error *ngIf="Attendee.get('gender').hasError('required')">{{getErrorMessage(Attendee.controls.gender)}}</mat-error>
+</mat-form-field>
+  <mat-form-field  appearance="fill">
+      <textarea matInput placeholder="address" name="address" formControlName="address" ></textarea>
+      <mat-error *ngIf="Attendee.get('address').hasError('required')">{{getErrorMessage(Attendee.controls.address)}}</mat-error>
   </mat-form-field>
   <label for="picture">Upload a Picture</label>
-  <input type="file" name="picture" (change)="handlePictureUpload($event)">
+  <input type="file" name="picture" formControlName="picture" (change)="handlePictureUpload($event)">
+  <!-- <mat-error *ngIf="picture.invalid"></mat-error> -->
+  <mat-error *ngIf="!Attendee.valid">Please fill required fields</mat-error>
   <br>
-  <button mat-raised-button type="submit" id="submitAttendee" (click)="addAttendee()">Save</button>
+  <button mat-raised-button type="submit" id="submitAttendee" (click)="addAttendee()" [disabled]="!Attendee.valid">Save</button>
   <br>
+  <button mat-raised-button type="submit" id="dismissForm" (click)="formDismiss()">Dismiss</button>
+  <br>
+</form>
+<div class="spinner">
+    <mat-spinner></mat-spinner>
 </div>
+<br>

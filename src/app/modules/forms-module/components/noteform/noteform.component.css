@@ -1,0 +1,17 @@
+.addNoteForm{
+    display: flex;
+    flex-direction: column;
+    
+}
+#noteSubmit{
+    background: #004ae2;
+    color:#fff;
+}
+#noteSubmit:disabled{
+    opacity: 0.5;
+    
+}
+#dismissForm{
+    background: #ea3048;
+    color:#fff;
+}

@@ -15,7 +15,8 @@ import {MatButtonModule,
         MatInputModule,
         MatSnackBarModule,
         MatTooltipModule,
-        MatBottomSheetModule
+        MatBottomSheetModule,
+        MatProgressSpinnerModule
         } from '@angular/material';
 
 
@@ -35,7 +36,8 @@ import {MatButtonModule,
                 MatInputModule,
                 MatSnackBarModule,
                 MatTooltipModule,
-                MatBottomSheetModule],
+                MatBottomSheetModule,
+                MatProgressSpinnerModule],
         exports:[MatButtonModule, 
                 MatTabsModule,
                 MatToolbarModule, 
@@ -51,7 +53,8 @@ import {MatButtonModule,
                 MatInputModule,
                 MatSnackBarModule,
                 MatTooltipModule,
-                MatBottomSheetModule]
+                MatBottomSheetModule,
+                MatProgressSpinnerModule]
 
 })
 

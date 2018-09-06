@@ -1,0 +1,16 @@
+.addGuardianForm{
+    display: flex;
+    flex-direction: column;
+    
+}
+#submitGuardian{
+    background: #004ae2;
+    color:#fff;
+}
+#dismissForm{
+    background: #ea3048;
+    color:#fff;
+}
+#submitGuardian:disabled{
+    opacity: 0.5;
+}

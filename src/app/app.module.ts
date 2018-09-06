@@ -20,6 +20,9 @@ import { ClassmainComponent } from './modules/class-module/components/classmain/
 import { AttendeeProfileComponent } from './modules/profiles-module/components/attendee-profile/attendee-profile.component';
 import { UserProfileComponent } from './modules/profiles-module/components/user-profile/user-profile.component';
 import { AttendeeformComponent } from './modules/forms-module/components/attendeeform/attendeeform.component';
+import { FormsModule, ReactiveFormsModule, } from '@angular/forms';
+import { GuardianformComponent } from './modules/forms-module/components/guardianform/guardianform.component';
+import { NoteformComponent } from './modules/forms-module/components/noteform/noteform.component';
 
 const appRoutes: Routes = [
   {path:'', redirectTo:'login', pathMatch:'full'},
@@ -42,7 +45,10 @@ const appRoutes: Routes = [
     ClassmainComponent,
     AttendeeProfileComponent,
     UserProfileComponent,
-    AttendeeformComponent
+    AttendeeformComponent,
+    GuardianformComponent,
+    NoteformComponent,
+    
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
@@ -51,11 +57,12 @@ const appRoutes: Routes = [
     MyMaterialModule,
     BrowserAnimationsModule,
     MenuModule,
-    
+    FormsModule,
+    ReactiveFormsModule
     
   ],
   entryComponents:[
-    AttendeeformComponent
+    AttendeeformComponent,GuardianformComponent,NoteformComponent
   ],
   bootstrap: [AppComponent]
 })

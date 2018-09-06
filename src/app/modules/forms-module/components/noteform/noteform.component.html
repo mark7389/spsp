@@ -1,0 +1,11 @@
+<form [formGroup]="Note" class="addNoteForm">
+  <mat-form-field appearance="fill">
+    <textarea matInput formControlName="note" placeholder="enter comments..."></textarea>
+    <mat-error *ngIf="Note.get('note').hasError('required')">{{getErrorMessage(Note.controls.note)}}</mat-error>
+  </mat-form-field>
+  <br>
+  <button mat-raised-button type="submit" id="noteSubmit" (click)="saveNote()" [disabled]="!Note.valid" >Save</button>
+  <br>
+  <button mat-raised-button id="dismissForm" (click)="formDismiss()">Dismiss</button>
+  <br>
+</form>
