@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, FormBuilder, FormGroup, Validators, ValidationErrors } from '@angular/forms';
-import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material';
+import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA, MatSnackBar } from '@angular/material';
 import { FormdatasubmitService } from '../../services/formdatasubmit.service';
 import { Router } from '@angular/router';
 
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class NoteformComponent implements OnInit {
   Note: FormGroup;
-  constructor(public router:Router, public sheetRef:MatBottomSheetRef,@Inject(MAT_BOTTOM_SHEET_DATA) public data:any,
+  constructor(public snackBar:MatSnackBar,public router:Router, public sheetRef:MatBottomSheetRef,@Inject(MAT_BOTTOM_SHEET_DATA) public data:any,
   public fb:FormBuilder, public formService:FormdatasubmitService) {
     if(this.data){
       this.Note = this.fb.group({
@@ -25,7 +25,7 @@ export class NoteformComponent implements OnInit {
       this.Note = this.fb.group({
         attendee_id: new FormControl(this.router.url.split('/')[3]),
         class_id: new FormControl(this.router.url.split('/')[2]),
-        note_date: new FormControl(new Date().toISOString()),
+        note_date: new FormControl(new Date().toISOString().split(".")[0]),
         note: new FormControl('', Validators.required)
       })
     }
@@ -36,6 +36,15 @@ export class NoteformComponent implements OnInit {
  }
  formDismiss(){
   this.sheetRef.dismiss();
+}
+addNote(){
+  this.formService.submitNote(this.Note.value).subscribe(data=>{
+    this.snackBar.open("success ✔","",{duration:3000,verticalPosition:'top'});
+    this.sheetRef.dismiss();
+  },
+  err=>{
+    this.snackBar.open("failed ✕","",{duration:3000,verticalPosition:'top'});
+  })
 }
   ngOnInit() {
   }

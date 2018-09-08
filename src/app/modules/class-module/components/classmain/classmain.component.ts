@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ClassDataService } from '../../services/class-data.service';
-import {MatPaginator, MatSort, MatTableDataSource,MatBottomSheet} from '@angular/material';
+import {MatPaginator, MatSort, MatTableDataSource,MatBottomSheet, MatBottomSheetRef} from '@angular/material';
 import { Router } from '@angular/router';
 import { AttendeeformComponent } from '../../../forms-module/components/attendeeform/attendeeform.component';
 
@@ -25,6 +25,9 @@ export class ClassmainComponent implements OnInit {
   }
   showBottomSheet():void {
        this.bottomsheet.open(AttendeeformComponent);
+       this.bottomsheet._openedBottomSheetRef.afterDismissed().subscribe(ref=>{
+         this.getAttendees();
+       })
   }
   getAttendees(){
     this.cdata.getAttendees().subscribe(data=>{

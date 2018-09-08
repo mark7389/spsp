@@ -25,7 +25,7 @@
    </mat-form-field>
    <mat-error *ngIf="!Guardian.valid">Please fill required fields</mat-error>
   <br>
-  <button mat-raised-button type="submit" id="submitGuardian" (click)="addAttendee()" [disabled]="!Guardian.valid">Save</button>
+  <button mat-raised-button type="submit" id="submitGuardian" (click)="addGuardian()" [disabled]="!Guardian.valid">Save</button>
   <br>
   <button mat-raised-button type="submit" id="dismissForm" (click)="formDismiss()">Dismiss</button>
   <br>

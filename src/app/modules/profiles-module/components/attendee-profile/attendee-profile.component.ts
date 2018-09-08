@@ -21,21 +21,34 @@ export class AttendeeProfileComponent implements OnInit {
           this.Attendee = data['info'];
           this.Guardians = data['info']['guardians'];
           this.Notes = data['info']['notes'];
+          
         } 
       })
   }
+  getSheetRef(){
+    this.bottomsheet._openedBottomSheetRef.afterDismissed().subscribe(ref=>{
+        this.getAttendee();
+    })
+  }
   editAttendee(){
     this.bottomsheet.open(AttendeeformComponent,{data:this.Attendee})
+    this.getSheetRef();
   }
   addGuardian(){
-    this.bottomsheet.open(GuardianformComponent)
+    this.bottomsheet.open(GuardianformComponent);
+    this.getSheetRef();
+
   }
   editGuardian(i){
     
     this.bottomsheet.open(GuardianformComponent,{data:this.Guardians[i]});
+    this.getSheetRef();
+
   }
   addNote(){
     this.bottomsheet.open(NoteformComponent);
+    this.getSheetRef();
+
   }
   ngOnInit() {
     this.getAttendee();

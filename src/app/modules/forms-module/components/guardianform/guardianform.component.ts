@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, FormBuilder, FormGroup, Validators, ValidationErrors } from '@angular/forms';
-import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material';
+import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA, MatSnackBar } from '@angular/material';
 import { FormdatasubmitService } from '../../services/formdatasubmit.service';
 import { Router } from '@angular/router';
 
@@ -12,10 +12,11 @@ import { Router } from '@angular/router';
 export class GuardianformComponent implements OnInit {
   Guardian: FormGroup
   
-  constructor(public router:Router ,public sheetRef: MatBottomSheetRef,@Inject(MAT_BOTTOM_SHEET_DATA) public data: any,public fb:FormBuilder, private formService:FormdatasubmitService) { 
+  constructor(public snackBar: MatSnackBar,public router:Router ,public sheetRef: MatBottomSheetRef,@Inject(MAT_BOTTOM_SHEET_DATA) public data: any,public fb:FormBuilder, private formService:FormdatasubmitService) { 
     
     if(this.data){
       this.Guardian = this.fb.group({
+        id: new FormControl(data.id),
         attendee_id: new FormControl(data.attendee_id),
         first_name: new FormControl(data.first_name,[Validators.required,Validators.pattern(/^[a-zA-Z]+$/)]),
         last_name: new FormControl(data.last_name,[Validators.required,Validators.pattern(/^[a-zA-Z]+$/)]),
@@ -44,6 +45,14 @@ export class GuardianformComponent implements OnInit {
  }
  formDismiss(){
   this.sheetRef.dismiss();
+}
+addGuardian(){
+  this.formService.submitGuardian(this.Guardian.value).subscribe(data=>{
+     this.snackBar.open("success ✔","",{duration:2000,verticalPosition:'top'})
+     this.sheetRef.dismiss();
+  },err=>{
+    this.snackBar.open("failure ✕","",{duration:2000,verticalPosition:'top'})
+  })
 }
   ngOnInit() {
   }

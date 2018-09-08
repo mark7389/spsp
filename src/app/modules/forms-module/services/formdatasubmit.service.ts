@@ -14,6 +14,7 @@ export class FormdatasubmitService {
     pic: "please upload a valid image",
     onSubmit: "please fix errors before save"
 }
+Token = localStorage.getItem('user');
   constructor(private router: Router, private http: HttpClient) { }
   getError(c){
     switch (Object.keys(c.errors)[0]){
@@ -25,13 +26,14 @@ export class FormdatasubmitService {
     }
   }
   submitAttendee(obj){
-
+      return this.http.post(`/api/modify/attendee/update/${this.Token}`,obj);
   }
   submitGuardian(obj){
-
+       return this.http.post(`/api/modify/guardian/update/${this.Token}`,obj)
   }
   submitNote(obj){
-
+        return this.http.post(`/api/modify/note/${this.Token}`,obj)
   }
+  
   
 }

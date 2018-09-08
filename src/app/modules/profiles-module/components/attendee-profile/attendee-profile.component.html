@@ -40,8 +40,8 @@
               <button mat-mini-fab matTooltip="add note" matTooltipPosition="above" type="submit" class="add_note" (click)="addNote()"><i class="fas fa-plus"></i></button>
           </div>
           <div class="note" *ngFor='let note of Notes'>
-              <p>{{note.note_date}}</p>
               <p>{{note.note}}</p>
+              <small>{{note.note_date | date:"EEEE, MMMM d, y"}}</small>
           </div>
         </div>
       </div>
