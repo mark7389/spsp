@@ -1,0 +1,18 @@
+#uploadedImg{
+    visibility: hidden;
+}
+.uploadImageForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.uploadImageForm button{
+    background: #00a4e2;
+    color:#fff;
+}
+input[type='file']:focus{
+    outline: none;
+}
+input[type='file' i]:hover{
+    cursor: pointer;
+}

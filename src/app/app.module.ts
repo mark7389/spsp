@@ -20,7 +20,7 @@ import { ClassmainComponent } from './modules/class-module/components/classmain/
 import { AttendeeProfileComponent } from './modules/profiles-module/components/attendee-profile/attendee-profile.component';
 import { UserProfileComponent } from './modules/profiles-module/components/user-profile/user-profile.component';
 import { AttendeeformComponent } from './modules/forms-module/components/attendeeform/attendeeform.component';
-import { FormsModule, ReactiveFormsModule, } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GuardianformComponent } from './modules/forms-module/components/guardianform/guardianform.component';
 import { NoteformComponent } from './modules/forms-module/components/noteform/noteform.component';
 import { ImageuploadComponent } from './modules/profiles-module/components/imageupload/imageupload.component';

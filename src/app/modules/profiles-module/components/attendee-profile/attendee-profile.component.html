@@ -4,7 +4,7 @@
     <br>
     <div class="profile_img">
     
-      <img src="../../../../../assets/Images/icons8-customer-96.png">
+      <img src="{{Attendee && Attendee.picture ? Attendee.picture:'../../../../../assets/Images/icons8-customer-96.png'}}">
       
     </div>
       <h3>{{Attendee ? Attendee.first_name+' '+Attendee.last_name:''}}</h3>

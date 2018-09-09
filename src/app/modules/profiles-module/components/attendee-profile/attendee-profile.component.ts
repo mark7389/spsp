@@ -5,6 +5,7 @@ import { AttendeeformComponent } from '../../../forms-module/components/attendee
 import { GuardianformComponent } from '../../../forms-module/components/guardianform/guardianform.component';
 import { NoteformComponent } from '../../../forms-module/components/noteform/noteform.component';
 import { ImageuploadComponent } from '../imageupload/imageupload.component';
+import { ImageconverterService } from '../../../../shared/imageconverter.service';
 
 @Component({
   selector: 'app-attendee-profile',
@@ -16,14 +17,20 @@ export class AttendeeProfileComponent implements OnInit {
   Guardians;
   Notes;
   
-  constructor(public cdata:AttendeeDataService, public bottomsheet: MatBottomSheet) { 
+  constructor(public converter: ImageconverterService,public cdata:AttendeeDataService, public bottomsheet: MatBottomSheet) { 
     
   }
   getAttendee(){
       this.cdata.getAttendee().subscribe(data=>{
+        console.log(data);
         if(data){
-          console.log(data);
+          
           this.Attendee = data['info'];
+          if(this.Attendee['picture']){
+            this.converter.convert(this.Attendee['picture']).then(res=>{
+              this.Attendee['picture'] = res;
+            })
+          }
           this.Guardians = data['info']['guardians'];
           this.Notes = data['info']['notes'];
           
@@ -59,6 +66,7 @@ export class AttendeeProfileComponent implements OnInit {
 
   }
   ngOnInit() {
+    console.log('hi');
     this.getAttendee();
   }
 

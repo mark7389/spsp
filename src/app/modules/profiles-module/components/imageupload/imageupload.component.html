@@ -1,4 +1,9 @@
-<form>
+<div class="uploadImageForm">
+  <br>
   <input type='file' (change)="handleUpload($event)">
+  <br>
   <button mat-raised-button type="submit" (click)="submit($event)">Save</button>
-</form>
+  <br>
+  <img #upImg id="uploadedImg" alt="profile upload">
+  <br>
+</div>

@@ -3,7 +3,7 @@ import { ClassDataService } from '../../services/class-data.service';
 import {MatPaginator, MatSort, MatTableDataSource,MatBottomSheet, MatBottomSheetRef} from '@angular/material';
 import { Router } from '@angular/router';
 import { AttendeeformComponent } from '../../../forms-module/components/attendeeform/attendeeform.component';
-
+import { ImageconverterService } from '../../../../shared/imageconverter.service';
 
 
 @Component({
@@ -30,9 +30,18 @@ export class ClassmainComponent implements OnInit {
        })
   }
   getAttendees(){
-    this.cdata.getAttendees().subscribe(data=>{
-      this.Attendees = data['info'];
-      console.log(this.Attendees);
+    this.cdata.getAttendees().subscribe(async data=>{
+      this.Attendees = await Promise.all(data['info'].map(async elem=>{
+        let x = new ImageconverterService()
+          if(elem.picture){
+            elem.picture = await x.convert(elem.picture)
+            
+            return elem
+          }else{
+            return elem
+          }
+          
+      }))
       this.dataSource = new MatTableDataSource(this.Attendees);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;

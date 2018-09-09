@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 import { MatDatepickerInputEvent, MatSnackBar } from '@angular/material';
 import { sanitizeResourceUrl } from '@angular/core/src/sanitization/sanitization';
 import {  DomSanitizer } from '@angular/platform-browser'
-import { Base64toblobService } from '../../../../shared/base64toblob.service';
+import { ImageconverterService } from '../../../../shared/imageconverter.service';
+
 @Component({
   selector: 'app-classlist',
   templateUrl: './classlist.component.html',
@@ -17,7 +18,7 @@ export class ClasslistComponent implements OnInit {
   public date = new Date().toISOString().split('T')[0];
   public previousClassDates = [];
   public justLoaded: boolean = true;
-  constructor(public blobService:Base64toblobService,public cdata:ClassDataService, public router:Router, public snackBar:MatSnackBar, public sanitize: DomSanitizer) { }
+  constructor(public cdata:ClassDataService, public router:Router, public snackBar:MatSnackBar, public sanitize: DomSanitizer) { }
   getDates(){
     this.cdata.getClassDates().subscribe(data=>{
       this.previousClassDates = data['dates'].map(elem=>{
@@ -62,13 +63,23 @@ export class ClasslistComponent implements OnInit {
     return this.sanitize.bypassSecurityTrustUrl(url);
   }
   getAttendance(date){
-    console.log(date);
-    this.cdata.getClassAttendees(date).subscribe(data=>{
-      console.log(data);
-      this.Attendees = data['info'];
-      this.Attendance = this.createAttendance(this.Attendees);
+    this.cdata.getClassAttendees(date).subscribe(async data=>{
       
-     console.log(this.Attendance);
+      
+      this.Attendance = this.createAttendance(data['info']);
+      this.Attendees = await Promise.all(data['info'].map(async elem=>{
+          let x = new ImageconverterService()
+          if(elem.picture){
+            elem.picture = await x.convert(elem.picture)
+            
+            return elem
+          }else{
+            return elem
+          }
+          
+      }))
+      
+      console.log(this.Attendees);
   });
   }
   handleDatePicker($event: MatDatepickerInputEvent<Date>){
