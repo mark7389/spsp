@@ -15,9 +15,9 @@
       <span><i class="fas fa-address-card"></i> {{Attendee && Attendee.address ? Attendee.address:' unavailable'}} </span>
       <br>
       <div class="editBtns">
-          <button mat-raised-button (click)="editAttendee()">Edit Attendee</button>
-          <button mat-raised-button (click)="uploadImage()">Upload Profile Image</button>
-          <button mat-raised-button (click)="addGuardian()">Add Guardian</button>
+          <button mat-button (click)="editAttendee()">Edit Attendee</button>
+          <button mat-button (click)="uploadImage()">Upload Profile Image</button>
+          <button mat-button (click)="addGuardian()">Add Guardian</button>
       </div>
       <br>
       <div class="separator"><h4>Guardians</h4></div>   
@@ -29,7 +29,7 @@
             <span><i class="fas fa-at"></i> {{g && g.email ? g.email:'unavailable'}}</span>
             <span><i class="fas fa-address-card"></i> {{g && g.address ? g.address:' unavailable'}} </span>
            <br>
-           <button  mat-raised-button  id="index-{{i}}" (click)="editGuardian(i)">Edit Guardian</button>
+           <button  mat-button  id="index-{{i}}" (click)="editGuardian(i)">Edit Guardian</button>
            <br>
        </div>
        <div class="separator"><h4>Notes</h4>
