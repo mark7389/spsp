@@ -39,6 +39,9 @@ mat-toolbar button{
     right:5px;
 }
 .sidenavcontainer {
+    z-index: 1000;
+}
+.sidenavcontainer {
     position: absolute;
     top:64px;
     left:0;
