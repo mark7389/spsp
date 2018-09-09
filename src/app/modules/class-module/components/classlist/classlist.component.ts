@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { MatDatepickerInputEvent, MatSnackBar } from '@angular/material';
 import { sanitizeResourceUrl } from '@angular/core/src/sanitization/sanitization';
 import {  DomSanitizer } from '@angular/platform-browser'
+import { Base64toblobService } from '../../../../shared/base64toblob.service';
 @Component({
   selector: 'app-classlist',
   templateUrl: './classlist.component.html',
@@ -16,7 +17,7 @@ export class ClasslistComponent implements OnInit {
   public date = new Date().toISOString().split('T')[0];
   public previousClassDates = [];
   public justLoaded: boolean = true;
-  constructor(public cdata:ClassDataService, public router:Router, public snackBar:MatSnackBar, public sanitize: DomSanitizer) { }
+  constructor(public blobService:Base64toblobService,public cdata:ClassDataService, public router:Router, public snackBar:MatSnackBar, public sanitize: DomSanitizer) { }
   getDates(){
     this.cdata.getClassDates().subscribe(data=>{
       this.previousClassDates = data['dates'].map(elem=>{
@@ -64,19 +65,7 @@ export class ClasslistComponent implements OnInit {
     console.log(date);
     this.cdata.getClassAttendees(date).subscribe(data=>{
       console.log(data);
-      this.Attendees = data['info'].map(elem=>{
-            if(elem.picture){
-              let arrayBuffer = new Uint8Array(elem.picture);
-              let blob = new Blob([arrayBuffer],{type:'image/jpg'});
-              let urlCreate = window.URL;
-              console.log(urlCreate);
-              elem.picture = (urlCreate.createObjectURL(blob));
-              console.log(elem.picture);
-            }
-            
-            return elem;
-            
-      })
+      this.Attendees = data['info'];
       this.Attendance = this.createAttendance(this.Attendees);
       
      console.log(this.Attendance);

@@ -23,6 +23,7 @@ import { AttendeeformComponent } from './modules/forms-module/components/attende
 import { FormsModule, ReactiveFormsModule, } from '@angular/forms';
 import { GuardianformComponent } from './modules/forms-module/components/guardianform/guardianform.component';
 import { NoteformComponent } from './modules/forms-module/components/noteform/noteform.component';
+import { ImageuploadComponent } from './modules/profiles-module/components/imageupload/imageupload.component';
 
 const appRoutes: Routes = [
   {path:'', redirectTo:'login', pathMatch:'full'},
@@ -48,6 +49,7 @@ const appRoutes: Routes = [
     AttendeeformComponent,
     GuardianformComponent,
     NoteformComponent,
+    ImageuploadComponent,
     
   ],
   imports: [
@@ -58,11 +60,12 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     MenuModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    
     
   ],
   entryComponents:[
-    AttendeeformComponent,GuardianformComponent,NoteformComponent
+    AttendeeformComponent,GuardianformComponent,NoteformComponent,ImageuploadComponent
   ],
   bootstrap: [AppComponent]
 })

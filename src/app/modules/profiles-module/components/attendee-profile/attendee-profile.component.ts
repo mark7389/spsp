@@ -4,6 +4,8 @@ import { MatBottomSheet } from '@angular/material';
 import { AttendeeformComponent } from '../../../forms-module/components/attendeeform/attendeeform.component'
 import { GuardianformComponent } from '../../../forms-module/components/guardianform/guardianform.component';
 import { NoteformComponent } from '../../../forms-module/components/noteform/noteform.component';
+import { ImageuploadComponent } from '../imageupload/imageupload.component';
+
 @Component({
   selector: 'app-attendee-profile',
   templateUrl: './attendee-profile.component.html',
@@ -13,7 +15,10 @@ export class AttendeeProfileComponent implements OnInit {
   Attendee;
   Guardians;
   Notes;
-  constructor(public cdata:AttendeeDataService, public bottomsheet: MatBottomSheet) { }
+  
+  constructor(public cdata:AttendeeDataService, public bottomsheet: MatBottomSheet) { 
+    
+  }
   getAttendee(){
       this.cdata.getAttendee().subscribe(data=>{
         if(data){
@@ -38,6 +43,9 @@ export class AttendeeProfileComponent implements OnInit {
     this.bottomsheet.open(GuardianformComponent);
     this.getSheetRef();
 
+  }
+  uploadImage(){
+    this.bottomsheet.open(ImageuploadComponent);
   }
   editGuardian(i){
     

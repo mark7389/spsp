@@ -15,14 +15,9 @@ export class AttendeeDataService {
     let classId = this.router.url.split('/')[2];
     return this.http.get(`/api/modify/attendee/${this.Token}/${attendeeId}/${classId}`);
   }
-  addNote(note){
-    let id = this.router.url.split('/')[3];
-    let classId = this.router.url.split('/')[2];
-    let date = new Date().toISOString();
-    return this.http.post(`/api/modify/note/${this.Token}`,{attendee_id:id,class_id:classId,note:note,note_date:date});
+  uploadImage(image){
+    return this.http.post(`/api/modify/image/${this.Token}`, image);
   }
-  updateGuardian(){
-    
-  }
+  
   
 }

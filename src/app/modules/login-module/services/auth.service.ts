@@ -22,7 +22,7 @@ export class AuthService {
     return new Promise((resolve, reject)=> {
       this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(
         res => {
-          let email = res['user']['email']+"godhelp";
+          let email = res['user']['email'];
           
           this.http.post('/api/authenticate/login',email).subscribe(
             data => {

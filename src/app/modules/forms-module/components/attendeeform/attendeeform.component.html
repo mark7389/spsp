@@ -43,9 +43,7 @@
       <textarea matInput placeholder="address" name="address" formControlName="address" ></textarea>
       <mat-error *ngIf="Attendee.get('address').hasError('required')">{{getErrorMessage(Attendee.controls.address)}}</mat-error>
   </mat-form-field>
-  <label for="picture">Upload a Picture</label>
-  <input type="file" name="picture" formControlName="picture" (change)="handlePictureUpload($event)">
-  <!-- <mat-error *ngIf="picture.invalid"></mat-error> -->
+
   <mat-error *ngIf="!Attendee.valid">Please fill required fields</mat-error>
   <br>
   <button mat-raised-button type="submit" id="submitAttendee" (click)="addAttendee()" [disabled]="!Attendee.valid">Save</button>

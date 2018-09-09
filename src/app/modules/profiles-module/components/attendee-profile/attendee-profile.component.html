@@ -1,12 +1,11 @@
 <app-menu></app-menu>
 <div class="main-profile-content">
   <div class="container-profile">
-    
-   
     <br>
     <div class="profile_img">
     
       <img src="../../../../../assets/Images/icons8-customer-96.png">
+      
     </div>
       <h3>{{Attendee ? Attendee.first_name+' '+Attendee.last_name:''}}</h3>
       <span><i class="fas fa-birthday-cake"></i> Born On {{Attendee && Attendee.date_of_birth ? (Attendee.date_of_birth | date:"dd/MM/yy"):'unavailable'}}</span>
@@ -17,6 +16,7 @@
       <br>
       <div class="editBtns">
           <button mat-raised-button (click)="editAttendee()">Edit Attendee</button>
+          <button mat-raised-button (click)="uploadImage()">Upload Profile Image</button>
           <button mat-raised-button (click)="addGuardian()">Add Guardian</button>
       </div>
       <br>
