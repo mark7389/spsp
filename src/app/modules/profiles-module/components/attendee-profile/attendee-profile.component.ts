@@ -53,6 +53,7 @@ export class AttendeeProfileComponent implements OnInit {
   }
   uploadImage(){
     this.bottomsheet.open(ImageuploadComponent);
+    this.getSheetRef();
   }
   editGuardian(i){
     

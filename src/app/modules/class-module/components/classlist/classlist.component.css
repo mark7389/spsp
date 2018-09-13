@@ -13,7 +13,12 @@ tr{
     
 
 }
-
+.color-green{
+    color:#32cc1d;
+}
+.color-red{
+    color:#ea3048;
+}
 .datePickerContainer,.searchClassContainer{
     display: flex;
     flex-direction: row;
@@ -22,6 +27,7 @@ tr{
     flex-wrap: wrap;
     padding:16px;
 }
+
 .searchClassContainer input{
     color:#35353e;
     box-shadow: 0 0 4px rgba(0,0,0,0.1);
@@ -106,6 +112,10 @@ thead{
     text-align: center;
     border-right: 1px solid rgba(92,92,92,0.2);
     padding:0.7vh 0.25vw;
+}
+.attendees_container td img{
+    max-width:90%;
+    height: auto;
 }
 /* checkbox */
 .attendees_container .checkbox-container{

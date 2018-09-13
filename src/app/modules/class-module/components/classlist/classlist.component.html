@@ -1,4 +1,4 @@
-<app-menu></app-menu>
+<app-menu (change)="getUserRole($event)"></app-menu>
 <div class="datePickerContainer">
   <!-- <mat-form-field>
       <mat-select placeholder="view previous classes" panelClass="dateOptions" [(value)]="date" >
@@ -24,7 +24,7 @@
 <div class="attendees_container">
   
   <table class="attendee_table" id="aTable">
-    <caption> Attendance For: {{date}}</caption>
+    <caption> Attendance For: {{date | date:"EEEE, MMM, yyyy"}}</caption>
     <thead>
       <tr>
         <th>Pic</th>
@@ -40,11 +40,13 @@
         
         <td>
           
-        <div class="checkbox-container">
+        <div class="checkbox-container" *ngIf="!disable && !tookAttendance">
             <input #present type="checkbox" id={{attendee.attendee_id}} value="present" (click)='buildAttendance(present.id,present.checked)'/>
             <span class="{{Attendance[i] && Attendance[i].present ? 'checkmark show':'checkmark'}}" id="{{attendee.attendee_id}}-span"></span>
         </div>
-      
+        <div class="attendance-history" *ngIf="disable || tookAttendance">
+              <h3 class="{{Attendance[i] && Attendance[i].present ? 'color-green':'color-red'}}">{{Attendance[i] && Attendance[i].present ? '&#10003;':'&#10007;'}}</h3>
+        </div>
         
         </td>
       </tr>
@@ -53,5 +55,5 @@
 
 </div>
 <div class="saveButtonContainer">
-    <button mat-raised-button class="submit_attendance" type='submit' (click)="submitAttendance()">Save</button>
+    <button mat-raised-button class="submit_attendance" type='submit' (click)="submitAttendance()" [disabled]="disable || tookAttendance">Save</button>
 </div>

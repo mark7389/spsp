@@ -20,7 +20,7 @@
     width: 100%;
   }
   .profileImg{
-      width:50%;
+      max-width:90%;
       height: auto;
   }
   ::ng-deep .mat-sort-header-container {
