@@ -30,4 +30,5 @@ export class ClassDataService {
     this.classId = this.router.url.split('/')[2];
     return this.http.get(`/api/modify/classattendees/${this.token}/${this.classId}`);
   }
+ 
 }

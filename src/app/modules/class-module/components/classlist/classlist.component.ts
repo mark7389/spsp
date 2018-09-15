@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ClassDataService } from '../../services/class-data.service';
 import { Router } from '@angular/router';
 import { MatDatepickerInputEvent, MatSnackBar } from '@angular/material';
-import { sanitizeResourceUrl } from '@angular/core/src/sanitization/sanitization';
-import {  DomSanitizer } from '@angular/platform-browser'
 import { ImageconverterService } from '../../../../shared/imageconverter.service';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-classlist',
@@ -15,28 +14,34 @@ import { ImageconverterService } from '../../../../shared/imageconverter.service
 export class ClasslistComponent implements OnInit {
   public Attendees;
   public Attendance;
-  public date = new Date().toISOString().split('T')[0];
+  public date = formatDate(new Date(),"yyyy-MM-dd","en-US","EST");
+  disable: boolean = false;
   public previousClassDates = [];
+  UserRole:number;
   public justLoaded: boolean = true;
-  constructor(public cdata:ClassDataService, public router:Router, public snackBar:MatSnackBar, public sanitize: DomSanitizer) { }
-  getDates(){
-    this.cdata.getClassDates().subscribe(data=>{
-      this.previousClassDates = data['dates'].map(elem=>{
-        
-            return elem.class_date.split('T')[0];
-      });
-    })
+  constructor(public cdata:ClassDataService, public router:Router, public snackBar:MatSnackBar) { 
   }
+  // getDates(){
+  //   this.cdata.getClassDates().subscribe(data=>{
+  //     this.previousClassDates = data['dates'].map(elem=>{
+  //           return elem.class_date.split('T')[0];
+  //     });
+  //   })
+  // }
   createAttendance(arr){
     
     let tmp = arr.map(elem=>{
-         return {
-           class_id: elem.class_id,
-           attendee_id: elem.attendee_id,
-           class_date: elem.class_date ? elem.class_date.split('T')[0]:this.date,
-           present: elem.present ? elem.present : 0
-         }
+      
+        return {
+          class_id: elem.class_id,
+          attendee_id: elem.attendee_id,
+          class_date: elem.class_date ? elem.class_date.split('T')[0]:this.date,
+          present: elem.present ? elem.present : 0
+        }
+      
+        
     });
+    console.log(tmp);
     return tmp;
   }
   buildAttendance(id:number,checked:boolean){
@@ -56,15 +61,14 @@ export class ClasslistComponent implements OnInit {
        }
      } 
    }
-   console.log(JSON.stringify(this.Attendance));
  
   }
-  sanitizer(url:string){
-    return this.sanitize.bypassSecurityTrustUrl(url);
+  getUserRole($event){
+      
+      this.UserRole = $event;
   }
   getAttendance(date){
     this.cdata.getClassAttendees(date).subscribe(async data=>{
-      
       
       this.Attendance = this.createAttendance(data['info']);
       this.Attendees = await Promise.all(data['info'].map(async elem=>{
@@ -79,18 +83,23 @@ export class ClasslistComponent implements OnInit {
           
       }))
       
-      console.log(this.Attendees);
+      this.justLoaded = false;
   });
   }
   handleDatePicker($event: MatDatepickerInputEvent<Date>){
         this.date = $event.value.toISOString().split('T')[0];
+        if(this.UserRole === 11){
+          this.disable =  formatDate(new Date(),"yyyy-MM-dd","en-US","EST") !== this.date;
+          console.log(formatDate(new Date(),"yyyy-MM-dd","en-US","EST") !== this.date)
+        }
+       
         this.getAttendance(this.date);
         
   }
-  handlePrevious($event){
-    this.date = $event;
-    this.getAttendance(this.date);
-  }
+  // handlePrevious($event){
+  //   this.date = $event;
+  //   this.getAttendance(this.date);
+  // }
   
   submitAttendance(){
     if(!this.justLoaded){
@@ -101,7 +110,8 @@ export class ClasslistComponent implements OnInit {
           this.getAttendance(this.date);
           
           this.snackBar.open('success','',{duration:2000,verticalPosition:'top'});
-          this.getDates();
+          this.disable = true;
+          // this.getDates();
           
         }
         else{
@@ -135,7 +145,7 @@ export class ClasslistComponent implements OnInit {
   }
   ngOnInit() {
     
-    this.getDates();
+    // this.getDates();
     this.getAttendance(this.date);
     
   }

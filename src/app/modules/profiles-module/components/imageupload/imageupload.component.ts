@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormdatasubmitService } from '../../../forms-module/services/formdatasubmit.service';
 import { AttendeeDataService } from '../../services/attendee-data.service';
+import { MatBottomSheetRef } from '@angular/material';
 
 
 @Component({
@@ -14,7 +15,7 @@ export class ImageuploadComponent implements OnInit {
   reader = new FileReader();
   file;
   imgSrc:string = "";
-  constructor(public cData:AttendeeDataService) { 
+  constructor(public cData:AttendeeDataService, public sheetRef:MatBottomSheetRef) { 
    
   }
   handleUpload($event){
@@ -40,7 +41,7 @@ export class ImageuploadComponent implements OnInit {
         
         e.preventDefault();
         this.cData.uploadImage(this.imgSrc).subscribe(data=>{
-          console.log(data);
+             this.sheetRef.dismiss();
         })
   }
   ngOnInit() {
