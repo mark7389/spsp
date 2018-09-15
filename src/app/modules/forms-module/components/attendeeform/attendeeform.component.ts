@@ -3,6 +3,7 @@ import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA, MatSnackBar } from '@angular/material';
 import { FormdatasubmitService } from '../../services/formdatasubmit.service';
 import { Router } from '@angular/router';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-attendeeform',
@@ -48,15 +49,11 @@ export class AttendeeformComponent implements OnInit {
     
   }
   getErrorMessage(c:FormControl){
-    
      return this.formService.getError(c);
   }
   dateFormatter(){
-    if(this.Attendee.get('date_of_birth').value.indexOf("T") > -1){
-       let date = new Date(this.Attendee.get('date_of_birth').value).toISOString().split("T")[0];
+       let date = formatDate(new Date(this.Attendee.get('date_of_birth').value),"yyyy-MM-dd","en-US","EST");
        this.Attendee.get('date_of_birth').setValue(date);
-
-    }
   }
  
   addAttendee(){
