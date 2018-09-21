@@ -12,7 +12,7 @@
       <span><i class="fas fa-phone-square"></i> {{Attendee && Attendee.phone_number ? Attendee.phone_number:'unavailable'}}</span>
       <span><i class="fas fa-at"></i> {{Attendee && Attendee.email ? Attendee.email:'unavailable'}}</span>
       <!-- <span>Active: {{Attendee && Attendee.active ? 'yes':'no'}}</span> -->
-      <span><i class="fas fa-address-card"></i> {{Attendee && Attendee.address ? Attendee.address:' unavailable'}} </span>
+      <span><i class="fas fa-address-card"></i> {{Attendee && Attendee.address ? Address:' unavailable'}} </span>
       <br>
       <div class="editBtns">
           <button mat-button (click)="editAttendee()">Edit Attendee</button>

@@ -24,7 +24,7 @@
 <div class="attendees_container">
   
   <table class="attendee_table" id="aTable">
-    <caption> Attendance For: {{date | date:"EEEE, MMM, yyyy"}}</caption>
+    <caption> Attendance For: {{date | date:"EEEE, MMM, dd, yyyy"}}</caption>
     <thead>
       <tr>
         <th>Pic</th>
@@ -40,11 +40,11 @@
         
         <td>
           
-        <div class="checkbox-container" *ngIf="!disable && !tookAttendance">
+        <div class="checkbox-container" *ngIf="!disable">
             <input #present type="checkbox" id={{attendee.attendee_id}} value="present" (click)='buildAttendance(present.id,present.checked)'/>
             <span class="{{Attendance[i] && Attendance[i].present ? 'checkmark show':'checkmark'}}" id="{{attendee.attendee_id}}-span"></span>
         </div>
-        <div class="attendance-history" *ngIf="disable || tookAttendance">
+        <div class="attendance-history" *ngIf="disable">
               <h3 class="{{Attendance[i] && Attendance[i].present ? 'color-green':'color-red'}}">{{Attendance[i] && Attendance[i].present ? '&#10003;':'&#10007;'}}</h3>
         </div>
         
