@@ -2,48 +2,75 @@
 <form class="addAttendeeForm" [formGroup]="Attendee">
   <mat-form-field appearance="fill">
     <input matInput placeholder="first name" name="first_name" formControlName="first_name" >
-    <mat-error *ngIf="Attendee.get('first_name').hasError('required') || Attendee.get('first_name').hasError('pattern')">{{getErrorMessage(Attendee.controls.first_name)}}</mat-error>
+    <mat-error *ngIf="Attendee.get('first_name').hasError('required') || Attendee.get('first_name').hasError('pattern')">{{getErrorMessage(Attendee.controls.first_name,"name")}}</mat-error>
   </mat-form-field>
   <mat-form-field  appearance="fill">
       <input matInput placeholder="last name" name="last_name" formControlName="last_name" >
-      <mat-error *ngIf="Attendee.get('last_name').hasError('required') || Attendee.get('last_name').hasError('pattern')">{{getErrorMessage(Attendee.controls.last_name)}}</mat-error>
+      <mat-error *ngIf="Attendee.get('last_name').hasError('required') || Attendee.get('last_name').hasError('pattern')">{{getErrorMessage(Attendee.controls.last_name,"name")}}</mat-error>
   </mat-form-field>
   <mat-form-field  appearance="fill">
     <input matInput placeholder="email" type="email" name="email" formControlName="email" >
-    <mat-error *ngIf="Attendee.get('email').hasError('email') || Attendee.get('email').hasError('required')">{{getErrorMessage(Attendee.controls.email)}}</mat-error>
+    <mat-error *ngIf="Attendee.get('email').hasError('email') || Attendee.get('email').hasError('required')">{{getErrorMessage(Attendee.controls.email,"email")}}</mat-error>
 </mat-form-field>
 <mat-form-field  appearance="fill">
     <input matInput placeholder="cell phone" type="tel" name="cell_phone" formControlName="cell_phone" >
     <mat-error *ngIf="Attendee.get('cell_phone').hasError('maxLength')
-    || Attendee.get('cell_phone').hasError('pattern')">{{getErrorMessage(Attendee.controls.cell_phone)}}</mat-error>
+    || Attendee.get('cell_phone').hasError('pattern')">{{getErrorMessage(Attendee.controls.cell_phone,"phone")}}</mat-error>
 </mat-form-field>
 <mat-form-field  appearance="fill">
-    <input matInput placeholder="home phone" name="home_phone" formControlName="home_phone" >
+    <input matInput placeholder="home phone" type="tel" name="home_phone" formControlName="home_phone" >
     <mat-error *ngIf="Attendee.get('home_phone').hasError('maxLength')
-    || Attendee.get('home_phone').hasError('pattern')">{{getErrorMessage(Attendee.controls.home_phone)}}</mat-error>
+    || Attendee.get('home_phone').hasError('pattern')">{{getErrorMessage(Attendee.controls.home_phone,"phone")}}</mat-error>
 </mat-form-field>
   <mat-form-field  appearance="fill">
       <input matInput [matDatepicker]="picker" name="date_of_birth" placeholder="Date of Birth" formControlName="date_of_birth">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker  startView="multi-year" touchUi #picker></mat-datepicker>
-      <mat-error *ngIf="Attendee.get('date_of_birth').hasError('required')">{{getErrorMessage(Attendee.controls.date_of_birth)}}</mat-error>
+      <mat-error *ngIf="Attendee.get('date_of_birth').hasError('required')">{{getErrorMessage(Attendee.controls.date_of_birth,"dob")}}</mat-error>
   </mat-form-field>
   <mat-form-field  appearance="fill">
     <input matInput placeholder="allergies" name="allergies" formControlName="allergies" >
-    <mat-error *ngIf="Attendee.get('allergies').hasError('pattern')">{{getErrorMessage(Attendee.controls.allergies)}}</mat-error>
+    <mat-error *ngIf="Attendee.get('allergies').hasError('pattern')">{{getErrorMessage(Attendee.controls.allergies,"allergies")}}</mat-error>
 </mat-form-field>
 <mat-form-field  appearance="fill">
     <mat-select placeholder="gender" name="gender" formControlName="gender" >
             <mat-option value="M">Male</mat-option>
             <mat-option value="F">Female</mat-option>
     </mat-select>
-    <mat-error *ngIf="Attendee.get('gender').hasError('required')">{{getErrorMessage(Attendee.controls.gender)}}</mat-error>
+    <mat-error *ngIf="Attendee.get('gender').hasError('required')">{{getErrorMessage(Attendee.controls.gender,"gender")}}</mat-error>
 </mat-form-field>
-  <mat-form-field  appearance="fill">
-      <textarea matInput placeholder="address" name="address" formControlName="address" ></textarea>
-      <mat-error *ngIf="Attendee.get('address').hasError('required')">{{getErrorMessage(Attendee.controls.address)}}</mat-error>
-  </mat-form-field>
-
+ <table>
+     
+     <tr>
+            <td><mat-form-field appearance="fill">
+                <input matInput placeholder="street #" name="street_number" formControlName="street_number" type="text" />
+                <mat-error *ngIf="Attendee.get('street_number').hasError('required') || Attendee.get('street_number').hasError('pattern')">{{getErrorMessage(Attendee.controls.street_number,"street_number")}}</mat-error>
+            </mat-form-field></td>
+            <td><mat-form-field appearance="fill">
+                <input matInput placeholder="street name" name="street_name" formControlName="street_name" type="text" />
+                <mat-error *ngIf="Attendee.get('street_name').hasError('required')">{{getErrorMessage(Attendee.controls.street_name,"street_name")}}</mat-error>
+            </mat-form-field></td>
+            <td><mat-form-field appearance="fill">
+                    <input matInput placeholder="unit/flr/apt #" name="unit_number" formControlName="unit_number" type="text"/>
+                    <mat-error *ngIf="Attendee.get('unit_number').hasError('pattern')">{{getErrorMessage(Attendee.controls.unit_number,"unit_number")}}</mat-error>
+                </mat-form-field></td>
+     </tr>
+     <tr>
+         
+         <td><mat-form-field appearance="fill">
+             <input matInput placeholder="city" name="city" formControlName="city" type="text" />
+             <mat-error *ngIf="Attendee.get('city').hasError('required')">{{getErrorMessage(Attendee.controls.city,"city")}}</mat-error>
+         </mat-form-field></td>
+         <td><mat-form-field appearance="fill">
+             <input matInput placeholder="province" name="province" formControlName="province" type="text" />
+             <mat-error *ngIf="Attendee.get('province').hasError('required') || Attendee.get('province').hasError('pattern')">{{getErrorMessage(Attendee.controls.province,"province")}}</mat-error>
+         </mat-form-field></td>
+         <td><mat-form-field appearance="fill">
+             <input matInput placeholder="postal code" name="zip_code" formControlName="zip_code" />
+             <mat-error *ngIf="Attendee.get('zip_code').hasError('required') || Attendee.get('zip_code').hasError('pattern')">{{getErrorMessage(Attendee.controls.zip_code,"zip_code")}}</mat-error>
+            </mat-form-field></td>
+     </tr>
+ </table>
   <mat-error *ngIf="!Attendee.valid">Please fill required fields</mat-error>
   <br>
   <button mat-raised-button type="submit" id="submitAttendee" (click)="addAttendee()" [disabled]="!Attendee.valid">Save</button>

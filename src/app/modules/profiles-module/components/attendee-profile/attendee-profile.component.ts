@@ -16,7 +16,7 @@ export class AttendeeProfileComponent implements OnInit {
   Attendee;
   Guardians;
   Notes;
-  
+  Address;
   constructor(public converter: ImageconverterService,public cdata:AttendeeDataService, public bottomsheet: MatBottomSheet) { 
     
   }
@@ -30,6 +30,9 @@ export class AttendeeProfileComponent implements OnInit {
             this.converter.convert(this.Attendee['picture']).then(res=>{
               this.Attendee['picture'] = res;
             })
+          }
+          if(this.Attendee['address']){
+            this.Address = this.Attendee['address'].replace(/['/']/g," ");
           }
           this.Guardians = data['info']['guardians'];
           this.Notes = data['info']['notes'];
