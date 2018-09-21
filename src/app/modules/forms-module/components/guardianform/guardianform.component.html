@@ -1,27 +1,27 @@
 <form [formGroup]="Guardian" class="addGuardianForm">
   <mat-form-field appearance="fill">
      <input matInput placeholder="first name" formControlName="first_name">
-     <mat-error *ngIf="Guardian.get('first_name').hasError('required') || Guardian.get('first_name').hasError('pattern')">{{getErrorMessage(Guardian.controls.first_name)}}</mat-error>
+     <mat-error *ngIf="Guardian.get('first_name').hasError('required') || Guardian.get('first_name').hasError('pattern')">{{getErrorMessage(Guardian.controls.first_name,"name")}}</mat-error>
   </mat-form-field>
   <mat-form-field appearance="fill">
       <input matInput placeholder="last name" formControlName="last_name">
-      <mat-error *ngIf="Guardian.get('last_name').hasError('required') || Guardian.get('last_name').hasError('pattern')">{{getErrorMessage(Guardian.controls.last_name)}}</mat-error>
+      <mat-error *ngIf="Guardian.get('last_name').hasError('required') || Guardian.get('last_name').hasError('pattern')">{{getErrorMessage(Guardian.controls.last_name,"name")}}</mat-error>
    </mat-form-field>
    <mat-form-field appearance="fill">
       <input matInput placeholder="phone number" formControlName="phone_number">
-      <mat-error *ngIf="Guardian.get('phone_number').hasError('pattern')">{{getErrorMessage(Guardian.controls.phone_number)}}</mat-error>
+      <mat-error *ngIf="Guardian.get('phone_number').hasError('pattern')">{{getErrorMessage(Guardian.controls.phone_number,"phone")}}</mat-error>
    </mat-form-field>
    <mat-form-field appearance="fill">
       <input matInput placeholder="email" formControlName="email">
-      <mat-error  *ngIf="Guardian.get('email').hasError('email') || Guardian.get('email').hasError('required')">{{getErrorMessage(Guardian.controls.email)}}</mat-error>
+      <mat-error  *ngIf="Guardian.get('email').hasError('email') || Guardian.get('email').hasError('required')">{{getErrorMessage(Guardian.controls.email,"email")}}</mat-error>
    </mat-form-field>
    <mat-form-field appearance="fill">
       <input matInput placeholder="relationship" formControlName="relationship">
-      <mat-error *ngIf="Guardian.get('relationship').hasError('pattern') || Guardian.get('relationship').hasError('required')">{{getErrorMessage(Guardian.controls.relationship)}}</mat-error>
+      <mat-error *ngIf="Guardian.get('relationship').hasError('pattern') || Guardian.get('relationship').hasError('required')">{{getErrorMessage(Guardian.controls.relationship,"relationship")}}</mat-error>
    </mat-form-field>
    <mat-form-field appearance="fill">
       <textarea matInput placeholder="address" formControlName="address"></textarea>
-      <mat-error *ngIf="Guardian.get('address').hasError('required')">{{getErrorMessage(Guardian.controls.address)}}</mat-error>
+      <mat-error *ngIf="Guardian.get('address').hasError('required')">{{getErrorMessage(Guardian.controls.address,"address")}}</mat-error>
    </mat-form-field>
    <mat-error *ngIf="!Guardian.valid">Please fill required fields</mat-error>
   <br>
