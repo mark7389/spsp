@@ -30,9 +30,9 @@ export class NoteformComponent implements OnInit {
       })
     }
    }
-   getErrorMessage(c:FormControl){
+   getErrorMessage(c:FormControl,str:string){
     
-    return this.formService.getError(c);
+    return this.formService.getError(c,str);
  }
  formDismiss(){
   this.sheetRef.dismiss();
