@@ -17,7 +17,7 @@ export class ClasslistComponent implements OnInit {
   public date = formatDate(new Date(),"yyyy-MM-dd","en-US","EST");
   disable: boolean = false;
   public previousClassDates = [];
-  UserRole:number;
+  UserRole:string;
   public justLoaded: boolean = true;
   constructor(public cdata:ClassDataService, public router:Router, public snackBar:MatSnackBar) { 
   }
@@ -88,7 +88,7 @@ export class ClasslistComponent implements OnInit {
   }
   handleDatePicker($event: MatDatepickerInputEvent<Date>){
         this.date = $event.value.toISOString().split('T')[0];
-        if(this.UserRole === 11){
+        if(this.UserRole === "servant"){
           this.disable =  formatDate(new Date(),"yyyy-MM-dd","en-US","EST") !== this.date;
           console.log(formatDate(new Date(),"yyyy-MM-dd","en-US","EST") !== this.date)
         }
@@ -110,7 +110,7 @@ export class ClasslistComponent implements OnInit {
           this.getAttendance(this.date);
           
           this.snackBar.open('success','',{duration:2000,verticalPosition:'top'});
-          this.disable = true;
+          // this.disable = true;
           // this.getDates();
           
         }

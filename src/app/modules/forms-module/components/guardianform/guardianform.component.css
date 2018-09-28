@@ -14,3 +14,20 @@
 #submitGuardian:disabled{
     opacity: 0.5;
 }
+.mat-form-field{
+    display: block;
+}
+.navBtns{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+.navBtns button{
+    background: #00a4e2;
+    color:white;
+    margin:2px;
+}
+::ng-deep .mat-step-header .mat-step-icon{
+    background-color: #00a4e2 !important;
+    color:#fff;
+}

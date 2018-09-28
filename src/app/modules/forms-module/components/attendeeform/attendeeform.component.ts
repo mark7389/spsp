@@ -1,5 +1,5 @@
-import { Component, OnInit, Inject, ChangeDetectorRef } from '@angular/core';
-import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, Inject, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
+import { FormControl, FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA, MatSnackBar } from '@angular/material';
 import { FormdatasubmitService } from '../../services/formdatasubmit.service';
 import { Router } from '@angular/router';
@@ -13,7 +13,8 @@ import { formatDate } from '@angular/common';
 
 export class AttendeeformComponent implements OnInit {
   Attendee: FormGroup;
-  
+  @Output()
+  openGuardian:EventEmitter<Object> =  new EventEmitter<Object>();
   constructor(public cd:ChangeDetectorRef,public snackBar: MatSnackBar,public router: Router,public sheetRef: MatBottomSheetRef,@Inject(MAT_BOTTOM_SHEET_DATA) public data: any,public fb:FormBuilder, private formService:FormdatasubmitService)
    {
      
@@ -31,9 +32,9 @@ export class AttendeeformComponent implements OnInit {
         date_of_birth:new FormControl(data.date_of_birth ,[Validators.required]),
         gender:new FormControl(data.gender,Validators.required),
         home_phone:new FormControl(data.home_phone === "None" || data.home_phone === "none" || data.home_phone === null ? '':data.home_phone
-          ,[Validators.required, Validators.maxLength(10),Validators.pattern(/^\d+$/)]),
+          ,[Validators.maxLength(10),Validators.pattern(/^\d+$/)]),
         cell_phone:new FormControl(data.cell_phone === "None" || data.cell_phone === "none" || data.cell_phone === null ? '':data.cell_phone,[Validators.required,Validators.maxLength(10),Validators.pattern(/^\d+$/)]),
-        email:new FormControl(data.email === "None" || data.email === "none" || data.email === null ? '':data.email,[Validators.required, Validators.email]),
+        email:new FormControl(data.email === "None" || data.email === "none" || data.email === null ? '':data.email,[Validators.email]),
         allergies:new FormControl(data.allergies,[Validators.pattern(/^[a-zA-Z]+$/)]),
         
         })
@@ -49,12 +50,13 @@ export class AttendeeformComponent implements OnInit {
         zip_code:new FormControl('',[Validators.required,Validators.pattern(/^[A-Z0-9]+$/),Validators.maxLength(6)]),
         date_of_birth:new FormControl('',[Validators.required]),
         gender:new FormControl('',Validators.required),
-        home_phone:new FormControl('',[Validators.required, Validators.maxLength(10),Validators.pattern(/^\d+$/)]),
+        home_phone:new FormControl('',[Validators.maxLength(10),Validators.pattern(/^\d+$/)]),
         cell_phone:new FormControl('',[Validators.required,Validators.maxLength(10),Validators.pattern(/^\d+$/)]),
-        email:new FormControl('',[Validators.required, Validators.email]),
+        email:new FormControl('',[Validators.email]),
         allergies:new FormControl('',[Validators.pattern(/^[a-zA-Z]+$/)]),
         class_id: new FormControl(this.router.url.split('/')[2])
-      })
+      });
+      
      }
     
   }
@@ -72,7 +74,7 @@ export class AttendeeformComponent implements OnInit {
      this.formService.submitAttendee(this.Attendee.value).subscribe(data=>{
        if(data['inserted']){
         this.snackBar.open("success ✔","",{duration:2000,verticalPosition:'top'})
-        this.sheetRef.dismiss();
+       
        }
 
      },
@@ -80,6 +82,12 @@ export class AttendeeformComponent implements OnInit {
       this.snackBar.open('failed ✕','',{duration:2000,verticalPosition:'top'});
      })
       
+  }
+  addGuardian(){
+    this.formDismiss();
+    this.openGuardian.emit({
+      
+    })
   }
   formDismiss(){
     this.sheetRef.dismiss();

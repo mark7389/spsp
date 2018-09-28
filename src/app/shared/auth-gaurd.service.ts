@@ -8,10 +8,18 @@ export class AuthGaurdService implements CanActivate {
 
   constructor(private router:Router) { }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot){
-    if(localStorage.getItem('user')){
-      return true;
+    
+    if(route.url.toString().indexOf('coordinator') > -1){
+          if(localStorage.getItem('role') === "coordinator"){
+             return true;
+          }
+    }else{
+      if(localStorage.getItem('user')){
+        return true;
+      }
     }
-    console.log('7a7a');
+    
+   
     this.router.navigate(['/login'], {queryParams: {returnUrl: state.url}});
     return false;
   }

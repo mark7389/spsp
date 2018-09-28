@@ -24,14 +24,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GuardianformComponent } from './modules/forms-module/components/guardianform/guardianform.component';
 import { NoteformComponent } from './modules/forms-module/components/noteform/noteform.component';
 import { ImageuploadComponent } from './modules/profiles-module/components/imageupload/imageupload.component';
+import { MultipleguardianComponent } from './modules/forms-module/components/multipleguardian/multipleguardian.component';
+import { CoorHomeComponent } from './modules/coordinator-home/components/coor-home/coor-home.component';
 
 const appRoutes: Routes = [
   {path:'', redirectTo:'login', pathMatch:'full'},
   {path:'login', component: LoginFormComponent},
-  {path: 'attendance/:id', component: ClasslistComponent, canActivate:[AuthGaurdService]},
+  // {path: 'attendance/:id', component: ClasslistComponent, canActivate:[AuthGaurdService]},
   {path: 'class/:id', component: ClassmainComponent, canActivate:[AuthGaurdService]},
   {path: 'attendee/:class_id/:id', component: AttendeeProfileComponent, canActivate:[AuthGaurdService]},
-  {path:'home', component: HomeComponent, canActivate:[AuthGaurdService]},
+  {path:'servant', component: HomeComponent, canActivate:[AuthGaurdService]},
+  {path:'classes', component: HomeComponent, canActivate:[AuthGaurdService]},
+  {path:'coordinator', component: CoorHomeComponent, canActivate:[AuthGaurdService]},
   {path:"**", redirectTo: ''}
 ]
 
@@ -50,6 +54,8 @@ const appRoutes: Routes = [
     GuardianformComponent,
     NoteformComponent,
     ImageuploadComponent,
+    MultipleguardianComponent,
+    CoorHomeComponent,
     
   ],
   imports: [

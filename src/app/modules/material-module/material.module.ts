@@ -16,7 +16,12 @@ import {MatButtonModule,
         MatSnackBarModule,
         MatTooltipModule,
         MatBottomSheetModule,
-        MatProgressSpinnerModule
+        MatProgressSpinnerModule,
+        MatStepperModule,
+        MatIconModule,
+        MatCheckboxModule,
+        MatGridListModule,
+        MatAutocompleteModule
         } from '@angular/material';
 
 
@@ -37,7 +42,12 @@ import {MatButtonModule,
                 MatSnackBarModule,
                 MatTooltipModule,
                 MatBottomSheetModule,
-                MatProgressSpinnerModule],
+                MatProgressSpinnerModule,
+                MatStepperModule,
+                MatIconModule,
+                MatCheckboxModule,
+                MatGridListModule,
+                MatAutocompleteModule],
         exports:[MatButtonModule, 
                 MatTabsModule,
                 MatToolbarModule, 
@@ -54,7 +64,12 @@ import {MatButtonModule,
                 MatSnackBarModule,
                 MatTooltipModule,
                 MatBottomSheetModule,
-                MatProgressSpinnerModule]
+                MatProgressSpinnerModule,
+                MatStepperModule,
+                MatIconModule,
+                MatCheckboxModule,
+                MatGridListModule,
+                MatAutocompleteModule]
 
 })
 

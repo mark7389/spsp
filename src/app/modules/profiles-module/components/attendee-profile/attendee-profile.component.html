@@ -9,7 +9,7 @@
     </div>
       <h3>{{Attendee ? Attendee.first_name+' '+Attendee.last_name:''}}</h3>
       <span><i class="fas fa-birthday-cake"></i> Born On {{Attendee && Attendee.date_of_birth ? (Attendee.date_of_birth | date:"dd/MM/yy"):'unavailable'}}</span>
-      <span><i class="fas fa-phone-square"></i> {{Attendee && Attendee.phone_number ? Attendee.phone_number:'unavailable'}}</span>
+      <span><i class="fas fa-phone-square"></i> {{Attendee && Attendee.cell_phone ? Attendee.cell_phone:'unavailable'}}</span>
       <span><i class="fas fa-at"></i> {{Attendee && Attendee.email ? Attendee.email:'unavailable'}}</span>
       <!-- <span>Active: {{Attendee && Attendee.active ? 'yes':'no'}}</span> -->
       <span><i class="fas fa-address-card"></i> {{Attendee && Attendee.address ? Address:' unavailable'}} </span>

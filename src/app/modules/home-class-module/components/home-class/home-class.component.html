@@ -9,7 +9,7 @@
           </mat-expansion-panel-header>
 
             <nav class="homeClassNav">
-                <a  class="classtabs" *ngFor="let class of service.classes"  routerLink="/attendance/{{class.id}}">
+                <a  class="classtabs" *ngFor="let class of service.classes"  routerLink="/class/{{class.id}}">
                   {{class.class | lowercase}}
                 </a>    
               

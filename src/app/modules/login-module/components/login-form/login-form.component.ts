@@ -20,8 +20,9 @@ export class LoginFormComponent implements OnInit {
   loginWithGoogle() {
     this.auth.loginWithGoogle().then(
       res => {
-        console.log("Good!")
-        this.router.navigate(['/home'])
+       localStorage.setItem('role',res.toString());
+       this.router.navigate([res]);
+        
       },
       rej => {
         console.log("Bad!")

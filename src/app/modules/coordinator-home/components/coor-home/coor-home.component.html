@@ -1,0 +1,69 @@
+<app-menu></app-menu>
+<div class="main-content-container">
+    <mat-accordion *ngFor='let service of Services; let i = index;'>
+        <mat-expansion-panel class="services">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    {{service.name | uppercase}}
+                </mat-panel-title>
+                <mat-panel-description>
+                    Expand to View Classes/Servants
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+                    
+                    <button mat-mini-fab (click)="showForm(i)">{{btnIcon}}</button>
+                    <br>
+                    <mat-label>Quick Add Servant</mat-label>
+                    <br>
+                    <div class='quickaddservants'>
+                            <form class="quickadd" id='quickForm{{i}}' [formGroup]="quickservantAdd">
+                                    <mat-form-field appearance='outline'>
+                                            <mat-label>servant select</mat-label>
+                                            <input type='text' matInput  formControlName="servant" [matAutocomplete]='auto' >
+                                    </mat-form-field>
+                                    <mat-autocomplete #auto='matAutocomplete' [displayWith]="displayFn">
+                                                <mat-option *ngFor='let servant of available_servants_filtered | async' [value]='servant'>{{servant.first_name}} 
+                                                    ({{servant.email}})
+                                                </mat-option>
+                                    </mat-autocomplete>
+                                    <mat-form-field appearance='outline'>
+                                        <mat-label>New Email(optional)</mat-label>
+                                        <input type='email' matInput formControlName='new_email' >
+                                    </mat-form-field>
+                                    <mat-form-field appearance='outline'>
+                                        <mat-label>first name</mat-label>
+                                        <input type='text' matInput formControlName="first_name">
+                                    </mat-form-field>
+                                    <mat-form-field appearance='outline'>
+                                        <mat-label> last name</mat-label>
+                                        <input type='text' matInput formControlName='last_name'>
+                                    </mat-form-field>
+                                    <mat-form-field appearance='outline'>
+                                            <mat-label>class select</mat-label>
+                                        <mat-select formControlName="class_id">
+                                            <mat-option *ngFor='let class of service.classes' [value]='class.id'>{{class.name}}</mat-option>
+                                        </mat-select>
+                                      </mat-form-field>
+                                      <button mat-raised-button (click)='addServant($event)'>Submit</button>
+                            </form>
+                    </div>
+                    <mat-accordion *ngFor='let class of service.classes'>
+                        
+                        <mat-expansion-panel class="classes">
+                            <mat-expansion-panel-header>
+                               
+                                <mat-panel-title>
+                                        
+                                    {{class.name | uppercase}}
+                                </mat-panel-title>
+                                <mat-panel-description>Expand servants</mat-panel-description>
+                            </mat-expansion-panel-header>
+                            <p *ngFor='let servant of class.servants'>
+                                <span><button class="removeServant" (click)='removeServantFromClass(servant.id,class.id)'>x</button></span> {{servant.first_name}} {{servant.last_name}} ({{servant.email}})
+                            </p>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+              
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>
