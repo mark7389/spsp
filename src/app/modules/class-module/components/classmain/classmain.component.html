@@ -1,15 +1,44 @@
-<app-menu></app-menu>
+<app-menu (change)="getUserRole($event)"></app-menu>
 <div class="main-class-content">
+        <div class="datePickerContainer">
+                <!-- <mat-form-field>
+                    <mat-select placeholder="view previous classes" panelClass="dateOptions" [(value)]="date" >
+                      
+                      <mat-option #dateOption *ngFor='let date of previousClassDates;' [value]="date" (click)='handlePrevious(dateOption.value)'>
+                          {{date | date:'EEE MMM yyyy'}}
+                        </mat-option>
+                     </mat-select>
+                     
+                      
+                     
+                </mat-form-field> -->
+                <mat-form-field>
+                    <input matInput [matDatepicker]="picker" placeholder="Choose a date" (dateInput)="handleDatePicker($event)">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker startView="month" [startAt]="Today"></mat-datepicker>
+                </mat-form-field>
+                  
+              </div>
   <mat-form-field class="searchFilter">
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
   </mat-form-field>
   <button mat-mini-fab matTooltip="add attendee" matTooltipPosition="above" type="submit" class="add_attendee" (click)="showBottomSheet()"><i class="fas fa-plus"></i></button>
   <br>
-  <div class="mat-elevation-z2">
+  <div class="mat-elevation-z2 attendees_container">
       <table mat-table [dataSource]="dataSource" matSort class="attendees_table">
+        
             <ng-container matColumnDef="avatar">
                 <th mat-header-cell *matHeaderCellDef> Pic </th>
-                <td mat-cell *matCellDef="let row"><img class="profileImg" src="{{row.picture ? row.picture:'../../../../../assets/Images/icons8-customer-96.png'}}"></td>
+                <td mat-cell *matCellDef="let row; let i =index;"> <div class="actions">
+                        <img class="profileImg" src="{{row.picture ? row.picture:'../../../../../assets/Images/icons8-customer-96.png'}}">
+                        <div class="checkbox-container" *ngIf="!disable">
+                                <input #present type="checkbox" id={{row.attendee_id}} value="present" (click)='buildAttendance(present.id,present.checked)'/>
+                                <span class="{{Attendance[i] && Attendance[i].present ? 'checkmark show':'checkmark'}}" id="{{row.attendee_id}}-span"></span>
+                            </div>
+                            <div class="attendance-history" *ngIf="disable">
+                                  <h3 class="{{Attendance[i] && Attendance[i].present ? 'color-green':'color-red'}}">{{Attendance[i] && Attendance[i].present ? '&#10003;':'&#10007;'}}</h3>
+                            </div>
+                  </div></td>
             </ng-container>
 
             <ng-container matColumnDef="name">
@@ -24,12 +53,17 @@
 
             <ng-container matColumnDef="editable">
                     <th mat-header-cell *matHeaderCellDef></th>
-                    <td mat-cell *matCellDef="let row"><a routerLink="/attendee/{{class_id}}/{{row.id}}"><i class="far fa-edit"></i></a></td>
+                    <td mat-cell *matCellDef="let row; let i = index"> 
+                        <a routerLink="/attendee/{{class_id}}/{{row.attendee_id}}"><i class="far fa-edit"></i></a>
+                    </td>
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
       <!-- <mat-paginator [pageSizeOptions]="[10, 25, 50]"></mat-paginator> -->
+      <div class="saveButtonContainer">
+        <button mat-raised-button class="submit_attendance" type='submit' (click)="submitAttendance()" [disabled]="disable || tookAttendance">Save</button>
+     </div>
   </div>
 </div>

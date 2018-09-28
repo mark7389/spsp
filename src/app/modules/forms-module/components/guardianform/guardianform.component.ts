@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./guardianform.component.css']
 })
 export class GuardianformComponent implements OnInit {
+
   Guardian: FormGroup
   
   constructor(public snackBar: MatSnackBar,public router:Router ,public sheetRef: MatBottomSheetRef,@Inject(MAT_BOTTOM_SHEET_DATA) public data: any,public fb:FormBuilder, private formService:FormdatasubmitService) { 
@@ -21,10 +22,15 @@ export class GuardianformComponent implements OnInit {
         first_name: new FormControl(data.first_name,[Validators.required,Validators.pattern(/^[a-zA-Z]+$/)]),
         last_name: new FormControl(data.last_name,[Validators.required,Validators.pattern(/^[a-zA-Z]+$/)]),
         phone_number:new FormControl(data.phone_number === "None" || data.phone_number === "none" || data.phone_number === null ?
-         '0000000000':data.phone_number ,[Validators.required, Validators.maxLength(10),Validators.pattern(/^\d+$/)]),
+         '':data.phone_number ,[Validators.required, Validators.maxLength(10),Validators.pattern(/^\d+$/)]),
         email:new FormControl(data.email,[Validators.required, Validators.email]),
         relationship: new FormControl(data.relationship,[Validators.required,Validators.pattern(/^[a-zA-Z]+$/)]),
-        address: new FormControl(data.address,[Validators.required])
+       street_number:new FormControl('',[Validators.required,Validators.pattern(/^[A-Z0-9]+$/)]),
+        street_name:new FormControl('',[Validators.required]),
+        unit_number: new FormControl('',Validators.pattern(/^[A-Z0-9]+$/)),
+        city: new FormControl('',[Validators.required]),
+        province: new FormControl('',[Validators.required]),
+        zip_code:new FormControl('',[Validators.required,Validators.pattern(/^[A-Z0-9]+$/),Validators.maxLength(6)]),
       })
     }
     else{
@@ -32,13 +38,18 @@ export class GuardianformComponent implements OnInit {
         attendee_id: new FormControl(this.router.url.split('/')[3]),
         first_name: new FormControl('',[Validators.required,Validators.pattern(/^[a-zA-Z]+$/)]),
         last_name: new FormControl('',[Validators.required,Validators.pattern(/^[a-zA-Z]+$/)]),
-        phone_number:new FormControl('0000000000',[Validators.required, Validators.maxLength(10),Validators.pattern(/^\d+$/)]),
+        phone_number:new FormControl('',[Validators.required, Validators.maxLength(10),Validators.pattern(/^\d+$/)]),
         email:new FormControl('',[Validators.required, Validators.email]),
         relationship: new FormControl('',[Validators.required,Validators.pattern(/^[a-zA-Z]+$/)]),
-        address: new FormControl('',[Validators.required])
-      })
-    }
+        street_number:new FormControl('',[Validators.required,Validators.pattern(/^[A-Z0-9]+$/)]),
+        street_name:new FormControl('',[Validators.required]),
+        unit_number: new FormControl('',Validators.pattern(/^[A-Z0-9]+$/)),
+        city: new FormControl('',[Validators.required]),
+        province: new FormControl('',[Validators.required]),
+        zip_code:new FormControl('',[Validators.required,Validators.pattern(/^[A-Z0-9]+$/),Validators.maxLength(6)]),
+    })
   }
+}
   getErrorMessage(c:FormControl,str:string){
     
     return this.formService.getError(c,str);

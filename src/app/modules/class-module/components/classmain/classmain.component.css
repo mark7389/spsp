@@ -4,13 +4,134 @@
     margin:2vh 2vw;
     padding:2vh 2vw;
 }
+.datePickerContainer,.searchClassContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    flex-wrap: wrap;
+    padding:16px;
+}
+.datePickerContainer mat-form-field, .datePickerContainer h5{
+    width:100%;
+    
+    margin:0 2px;
+    
+}
+
+.datePickerContainer h5{
+    text-align: right;
+    color: #35353e;
+}
+.attendees_container .checkbox-container{
+    display: block;
+    position: relative;
+    height: 25px;
+    width: 25px;
+    margin:auto 12px;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.attendees_container input[type='checkbox']{
+    position: absolute;
+    top:0;
+    left:0;
+    width:25px;
+    height: 25px;
+    z-index:100;
+    opacity: 0;
+    cursor: pointer;
+}
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    border:0.5px solid #35353e;
+    background-color: #fff;
+    box-shadow: inset 0 0 5px 4px rgba(146, 145, 145, 0.1);
+}
+.attendance-history h3{
+    height: 25px;
+    width: 25px;
+    margin:5px 10px;
+}
+.checkbox-container:hover input[type='checkbox'] ~ .checkmark {
+    background-color: #ccc;
+}
+.checkbox-container input[type='checkbox'] ~ .show {
+    background-color: #32cc1d;
+}
+.show:after {
+    content: "";
+    position: absolute;
+}
+
+.checkbox-container .show:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+caption{
+    background: #00a4e2;
+    color:#fff;
+    box-shadow: 0 0 4px 2px rgba(0,0,0,0.1);
+    border-radius:4px;
+    border: 1px solid #fff;  
+    text-align: center;
+}
+
+.saveButtonContainer button{
+    width:50%;
+    margin:auto;
+    margin-bottom: 18px;
+    background: #00a4e2;
+    color: #f1f1f1;
+    font-size:22px;
+    opacity: 0.8;
+    align-content: center;
+    line-height: 2em;
+    vertical-align: middle;
+}
+.saveButtonContainer button:hover{
+    box-shadow: none;
+    opacity: 1;
+}
+.actions{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .attendees_table{
     width:100%;
 }
+.saveButtonContainer{
+    display: flex;
+    justify-content: center;
+    
+
+}
+.color-green{
+    color:#32cc1d;
+}
+.color-red{
+    color:#ea3048;
+}
 .add_attendee{
     position: absolute;
-    right:2%;
-    top:20%;
+    right:1.5%;
+    top:33%;
     margin:5px;
     color:#fff;
     background: #00a4e2;

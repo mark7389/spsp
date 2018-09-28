@@ -33,7 +33,7 @@ export class AuthService {
                 () => {
                   if(token && state){ 
                     localStorage.setItem('user',token);
-                    resolve(true)
+                    resolve(data['role'])
                   }
                   reject(false)
                 })

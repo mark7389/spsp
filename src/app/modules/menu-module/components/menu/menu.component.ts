@@ -11,9 +11,9 @@ export class MenuComponent implements OnInit {
   public MenuItems:[string];
   public url;
   public subUrl;
-  role:number;
+  role:string;
   @Output()
-  change: EventEmitter<number> = new EventEmitter<number>();
+  change: EventEmitter<string> = new EventEmitter<string>();
   constructor(public getMenu:GetmenuitemsService,public auth:AuthService,public router:Router) { }
   toggle($event){
     
@@ -24,7 +24,7 @@ export class MenuComponent implements OnInit {
  }
  logOut(){
   this.auth.logout();
-  console.log('7a7a');
+  
  }
   ngOnInit() {
       this.url = this.router.url.split('/');
@@ -32,7 +32,7 @@ export class MenuComponent implements OnInit {
       this.getMenu.fetchMenuItems().subscribe(data=>{
         console.log(data);
         this.MenuItems = data["items"].split(',');
-        this.role = data['role'];
+        this.role = data['role_name'];
         this.change.emit(this.role);
         this.subUrl = this.MenuItems.map(elem=>{
             return elem.split(" ")[1];

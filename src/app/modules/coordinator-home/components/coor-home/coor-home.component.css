@@ -1,0 +1,9 @@
+.main-content-container .mat-expansion-panel{
+    border: 10px solid #33353e;
+    margin:5px;
+    padding:5px;
+}
+.quickadd{
+    display:none;
+    transition: all 0.4s linear;
+}
