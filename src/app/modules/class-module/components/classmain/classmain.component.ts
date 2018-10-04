@@ -45,22 +45,16 @@ export class ClassmainComponent implements OnInit {
     console.log(tmp);
     return tmp;
   }
-  buildAttendance(id:number,checked:boolean){
+  buildAttendance(id:number,checked:boolean,index:number){
    this.justLoaded = false;
    let alength = this.Attendance.length;
   console.log(id, checked);
    if(alength){
-     for(let i = 0; i < alength ; i++){
-       let checkbox = document.getElementById(`${this.Attendees[i].attendee_id}-span`)
-       if(this.Attendance[i].attendee_id == id){
-         if(checkbox.classList[1]){
-          this.Attendance[i].present = 0;
-
-         }else{
-          this.Attendance[i].present = 1;
-         }
-       }
-     } 
+       let checkbox = document.getElementById(`${this.Attendees[index].attendee_id}-span`)
+       if(this.Attendance[index].attendee_id == id){
+         this.Attendance[index].present = 
+         this.Attendance[index].present ? 0 : 1;
+       } 
    }
  
   }
