@@ -45,25 +45,21 @@ export class ClassmainComponent implements OnInit {
     console.log(tmp);
     return tmp;
   }
-  buildAttendance(id:number,checked:boolean){
-   this.justLoaded = false;
-   let alength = this.Attendance.length;
-  console.log(id, checked);
-   if(alength){
-     for(let i = 0; i < alength ; i++){
-       let checkbox = document.getElementById(`${this.Attendees[i].attendee_id}-span`)
-       if(this.Attendance[i].attendee_id == id){
-         if(checkbox.classList[1]){
-          this.Attendance[i].present = 0;
+  buildAttendance(id:number,checked:boolean,index:number){
+   
+   console.log(id,index,checked);
+   this.Attendance.map(elem =>{
+     if(elem.attendee_id == id){
+       elem.present = elem.present ? 0:1;
+     }
+   });
+   this.Attendees.map(elem =>{
+    if(elem.attendee_id == id){
+      elem.present = elem.present ? 0:1;
+    }
+  });    
+}
 
-         }else{
-          this.Attendance[i].present = 1;
-         }
-       }
-     } 
-   }
- 
-  }
   getUserRole($event){
       
       this.UserRole = $event;
@@ -72,9 +68,8 @@ export class ClassmainComponent implements OnInit {
     this.cdata.getClassAttendees(date).subscribe(async data=>{
       console.log(data['info']);
       this.Attendance = this.createAttendance(data['info']);
-      console.log (this.Attendance);
       this.Attendees = await Promise.all(data['info'].map(async elem=>{
-          let x = new ImageconverterService()
+        let x = new ImageconverterService()
           if(elem.picture){
             elem.picture = await x.convert(elem.picture)
             
@@ -84,11 +79,9 @@ export class ClassmainComponent implements OnInit {
           }
           
       }))
-      console.log(this.Attendees);
       this.dataSource = new MatTableDataSource(this.Attendees);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-      this.justLoaded = false;
   });
   }
   handleDatePicker($event: MatDatepickerInputEvent<Date>){
@@ -107,7 +100,7 @@ export class ClassmainComponent implements OnInit {
   // }
   
   submitAttendance(){
-    if(!this.justLoaded){
+    
       this.cdata.takeAttendance(this.Attendance).subscribe(data=>{
         console.log(JSON.stringify(data));
         if(data){
@@ -115,8 +108,6 @@ export class ClassmainComponent implements OnInit {
           this.getAttendance(this.date);
           
           this.snackBar.open('success','',{duration:2000,verticalPosition:'top'});
-          // this.disable = true;
-          // this.getDates();
           
         }
         else{
@@ -124,38 +115,14 @@ export class ClassmainComponent implements OnInit {
           alert("couldn't save attendance, please try again")
         }
       })
-    }
-    else{
-      alert('nothing to save!!!')
-    }
-    
-  }
+}
   showBottomSheet():void {
        this.bottomsheet.open(AttendeeformComponent);
        this.bottomsheet._openedBottomSheetRef.afterDismissed().subscribe(ref=>{
-         this.getAttendees();
+         this.getAttendance(this.date);
        })
   }
-  getAttendees(){
-    this.cdata.getAttendees().subscribe(async data=>{
-      this.Attendees = await Promise.all(data['info'].map(async elem=>{
-        let x = new ImageconverterService()
-          if(elem.picture){
-            elem.picture = await x.convert(elem.picture)
-            
-            return elem
-          }else{
-            return elem
-          }
-          
-      }))
-      this.dataSource = new MatTableDataSource(this.Attendees);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-    })
-  }
   ngOnInit() {
-    // this.getAttendees();
     this.getAttendance(this.date);
   }
   applyFilter(filterValue: string) {

@@ -21,7 +21,8 @@ import {MatButtonModule,
         MatIconModule,
         MatCheckboxModule,
         MatGridListModule,
-        MatAutocompleteModule
+        MatAutocompleteModule,
+        MatDividerModule
         } from '@angular/material';
 
 
@@ -47,7 +48,8 @@ import {MatButtonModule,
                 MatIconModule,
                 MatCheckboxModule,
                 MatGridListModule,
-                MatAutocompleteModule],
+                MatAutocompleteModule,
+                MatDividerModule],
         exports:[MatButtonModule, 
                 MatTabsModule,
                 MatToolbarModule, 
@@ -69,7 +71,8 @@ import {MatButtonModule,
                 MatIconModule,
                 MatCheckboxModule,
                 MatGridListModule,
-                MatAutocompleteModule]
+                MatAutocompleteModule,
+                MatDividerModule]
 
 })
 

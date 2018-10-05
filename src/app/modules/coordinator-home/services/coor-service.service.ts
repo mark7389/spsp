@@ -16,7 +16,7 @@ export class CoorServiceService {
   }
   addServant(obj){
       let data = {
-          id: obj.servant.id ?  obj.servant.id : null,
+          id: obj.servant ?  obj.servant.id : null,
           first_name: obj.first_name ? obj.first_name : null,
           last_name: obj.last_name ? obj.last_name : null,
           email: obj.new_email ? obj.new_email : null,

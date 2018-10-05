@@ -7,3 +7,18 @@
     display:none;
     transition: all 0.4s linear;
 }
+.main-content-container button{
+    background: #00a4e2;
+    color:#fff;
+    font-size: 18px;
+    margin:5px;
+}
+.servantList{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+}
+.gotoClass{
+    background: #00a4e2;
+    color:#fff;
+}

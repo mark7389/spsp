@@ -19,7 +19,7 @@
                             <form class="quickadd" id='quickForm{{i}}' [formGroup]="quickservantAdd">
                                     <mat-form-field appearance='outline'>
                                             <mat-label>servant select</mat-label>
-                                            <input type='text' matInput  formControlName="servant" [matAutocomplete]='auto' >
+                                            <input type='text' matInput id='servantValue' formControlName="servant" [matAutocomplete]='auto' >
                                     </mat-form-field>
                                     <mat-autocomplete #auto='matAutocomplete' [displayWith]="displayFn">
                                                 <mat-option *ngFor='let servant of available_servants_filtered | async' [value]='servant'>{{servant.first_name}} 
@@ -27,7 +27,7 @@
                                                 </mat-option>
                                     </mat-autocomplete>
                                     <mat-form-field appearance='outline'>
-                                        <mat-label>New Email(optional)</mat-label>
+                                        <mat-label>Email</mat-label>
                                         <input type='email' matInput formControlName='new_email' >
                                     </mat-form-field>
                                     <mat-form-field appearance='outline'>
@@ -44,7 +44,7 @@
                                             <mat-option *ngFor='let class of service.classes' [value]='class.id'>{{class.name}}</mat-option>
                                         </mat-select>
                                       </mat-form-field>
-                                      <button mat-raised-button (click)='addServant($event)'>Submit</button>
+                                      <button mat-raised-button (click)='addServant($event)' [disabled]="!quickservantAdd.valid">Submit</button>
                             </form>
                     </div>
                     <mat-accordion *ngFor='let class of service.classes'>
@@ -58,9 +58,13 @@
                                 </mat-panel-title>
                                 <mat-panel-description>Expand servants</mat-panel-description>
                             </mat-expansion-panel-header>
-                            <p *ngFor='let servant of class.servants'>
-                                <span><button class="removeServant" (click)='removeServantFromClass(servant.id,class.id)'>x</button></span> {{servant.first_name}} {{servant.last_name}} ({{servant.email}})
-                            </p>
+                            <a mat-button class="gotoClass" routerLink="/class/{{class.id}}">Go To Class</a>
+                            <div class="servantList" *ngFor='let servant of class.servants'>
+                                
+                                <span><button mat-mini-fab class="removeServant" (click)='removeServantFromClass(servant.id,class.id)'>x</button></span>
+                                <h4>{{servant.first_name}} {{servant.last_name}} ({{servant.email}})</h4> 
+                                
+                            </div>
                         </mat-expansion-panel>
                     </mat-accordion>
               

@@ -1,6 +1,6 @@
 <div class="mainMenu">
   <mat-toolbar>
-    <span *ngIf="role != 'servant'">
+    <span>
       <button mat-button id="menuButton" (click)='toggle($event)'>
         <div class="bar bar1"></div>
         <div class="bar bar2"></div>
@@ -13,9 +13,18 @@
  <div class="sidenavcontainer" id='sidenav' (click)='toggle($event)'>
      <div class="sidenavcontent" (click)='toggle($event)'>
         
-           <ul class="innerMenu" >
-              
-              <li class="menuItem" *ngFor="let i of MenuItems;index as k"><a routerLink="/{{subUrl[k] | lowercase }}/{{url[2]}}">{{i | uppercase}}</a></li>
+           <ul class="innerMenu" *ngIf="role ===  'coordinator'">
+              <li class="menuItem"><a routerLink="/coordinator">Coordinator Services</a></li>
+              <mat-divider [inset]='true'></mat-divider>
+              <li class="menuItem"><a routerLink="/classes">Classes I Serve</a></li>
+              <mat-divider [inset]='true'></mat-divider>
+              <li *ngIf="url[1] === 'attendee' " class="menuItem"><a routerLink="/class/{{url[2]}}">Back to Attendance</a></li>
+
+           </ul> 
+
+           <ul class="innerMenu" *ngIf="role === 'servant'">
+            <li *ngIf="url[1] === 'attendee' " class="menuItem"><a routerLink="/class/{{url[2]}}">Back to Attendance</a></li>
+            <li class="menuItem"><a routerLink="/servant">Back to List</a></li>  
           </ul> 
 
      </div>
