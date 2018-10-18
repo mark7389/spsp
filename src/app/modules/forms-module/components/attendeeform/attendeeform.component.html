@@ -99,13 +99,13 @@
                     <input matInput placeholder="postal code" name="zip_code" formControlName="zip_code" />
                     <mat-error *ngIf="Attendee.get('zip_code').hasError('required') || Attendee.get('zip_code').hasError('pattern')">{{getErrorMessage(Attendee.controls.zip_code,"zip_code")}}</mat-error>
                 </mat-form-field>
-            <h5>Congratulations! you've made it this far. Click "Save" to commit progress.</h5>
+            <h5 *ngIf="Attendee.valid">Congratulations! you've made it this far. Click "Save" to commit progress.</h5>
             <mat-error *ngIf="!Attendee.valid">Please fix form errors, to be able to save</mat-error>
             <div class="navBtns">
                  
                  <button mat-button matStepperPrevious>Back</button>
                  <button mat-button (click)="addAttendee()" [disabled]="!Attendee.valid">Save</button>
-                 <button *ngIf="!data" mat-button (click)="addGuardians()">Guardian</button>
+                 <!-- <button *ngIf="!data" mat-button (click)="addGuardians()">Guardian</button> -->
             </div>
         </mat-step>
     </mat-horizontal-stepper>

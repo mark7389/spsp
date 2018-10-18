@@ -54,7 +54,9 @@
             <ng-container matColumnDef="editable">
                     <th mat-header-cell *matHeaderCellDef></th>
                     <td mat-cell *matCellDef="let row; let i = index"> 
-                        <a routerLink="/attendee/{{class_id}}/{{row.attendee_id}}"><i class="far fa-edit"></i></a>
+                        <button mat-raised-button class='listBtn' routerLink="/attendee/{{class_id}}/{{row.attendee_id}}"><i class="fas fa-pen-square" style="color:#fff"></i> View/Edit</button>
+                        <button mat-raised-button class='listBtn' (click)="removeAttendee(row.attendee_id)"><i class="fa fa-trash" style="color:#fff"></i> Remove</button>
+                        <button mat-raised-button class='listBtn' (click)="moveToClass(row.attendee_id)"><i class="fas fa-arrows-alt" style="color:#fff"></i> Move</button>
                     </td>
             </ng-container>
 

@@ -123,7 +123,7 @@ export class ClassmainComponent implements OnInit {
        })
   }
   ngOnInit() {
-    this.getAttendance(this.date);
+    this.getAttendance(this.date);   
   }
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();

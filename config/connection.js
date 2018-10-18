@@ -2,9 +2,9 @@ const mysql = require('mysql2');
 
 const conn_Params = {
     host: process.env.DB_HOST || 'localhost',
-    user: process.env.DB_USER || '',
-    password: process.env.DB_PASS || '',
-    database: process.env.DB_db || '',
+    user: process.env.DB_USER || 'root',
+    password: process.env.DB_PASS || '@%73647690K',
+    database: process.env.DB_db || 'spsp',
     connectionLimit: 100
 }
 

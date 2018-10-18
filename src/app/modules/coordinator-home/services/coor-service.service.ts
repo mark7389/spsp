@@ -15,7 +15,7 @@ export class CoorServiceService {
     return this.http.get(`/api/modify/users/all/${this.token}`);
   }
   addServant(obj){
-      let data = {
+      let data = { 
           id: obj.servant ?  obj.servant.id : null,
           first_name: obj.first_name ? obj.first_name : null,
           last_name: obj.last_name ? obj.last_name : null,

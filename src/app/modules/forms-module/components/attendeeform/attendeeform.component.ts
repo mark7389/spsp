@@ -74,7 +74,7 @@ export class AttendeeformComponent implements OnInit {
      this.formService.submitAttendee(this.Attendee.value).subscribe(data=>{
        if(data['inserted']){
         this.snackBar.open("success ✔","",{duration:2000,verticalPosition:'top'})
-       
+        this.formDismiss();
        }
 
      },

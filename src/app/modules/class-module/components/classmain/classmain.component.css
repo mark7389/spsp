@@ -18,7 +18,12 @@
     margin:0 2px;
     
 }
-
+.listBtn{
+    text-decoration: none;
+    color:#fff;
+    background-color: #00a4e2;
+    margin: 5px 2px;
+}
 .datePickerContainer h5{
     text-align: right;
     color: #35353e;
