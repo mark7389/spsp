@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AttendeeformComponent } from '../../../forms-module/components/attendeeform/attendeeform.component';
 import { ImageconverterService } from '../../../../shared/imageconverter.service';
 import { formatDate } from '@angular/common';
+import { ClassAssignComponent } from 'src/app/modules/forms-module/components/class-assign/class-assign.component';
 
 @Component({
   selector: 'app-classmain',
@@ -59,7 +60,12 @@ export class ClassmainComponent implements OnInit {
     }
   });    
 }
-
+moveToClass(id){
+  this.bottomsheet.open(ClassAssignComponent,{data:{attendee_id:id,class_id:this.class_id,class_date:this.date}});
+  this.bottomsheet._openedBottomSheetRef.afterDismissed().subscribe(ref=>{
+    this.getAttendance(this.date);
+  })
+}
   getUserRole($event){
       
       this.UserRole = $event;
@@ -115,7 +121,17 @@ export class ClassmainComponent implements OnInit {
           alert("couldn't save attendance, please try again")
         }
       })
-}
+} 
+  removeAttendee(id){
+      this.cdata.removeAttendee(id,this.date).subscribe(data => {
+        if(data['updated']){
+          this.getAttendance(this.date);
+          this.snackBar.open('success','',{duration:2000,verticalPosition:'top'});
+        }else{
+          this.snackBar.open('failed','',{duration:2000,verticalPosition:'top'});
+        }
+      })
+  } 
   showBottomSheet():void {
        this.bottomsheet.open(AttendeeformComponent);
        this.bottomsheet._openedBottomSheetRef.afterDismissed().subscribe(ref=>{

@@ -1,0 +1,9 @@
+<form class="assignClass" [formGroup]="submit">
+    <mat-form-field appearance="outline">
+      <mat-select formControlName="newClass" placeholder="select a class">
+        <mat-option *ngFor='let class of classes' [value]='class.id'>{{class.class_name}}({{class.class_description}})</mat-option>
+    </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button [disabled]="!submit.valid" (click)="assignNewClass()">Assign New Class</button>
+</form>

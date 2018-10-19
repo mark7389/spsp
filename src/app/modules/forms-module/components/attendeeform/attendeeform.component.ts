@@ -64,7 +64,7 @@ export class AttendeeformComponent implements OnInit {
      return this.formService.getError(c,str);
   }
   dateFormatter(){
-       let date = formatDate(new Date(this.Attendee.get('date_of_birth').value),"yyyy-MM-dd","en-US","EST");
+       let date = formatDate(new Date(this.Attendee.get('date_of_birth').value),"yyyy-MM-dd","en-US");
        this.Attendee.get('date_of_birth').setValue(date);
   }
  

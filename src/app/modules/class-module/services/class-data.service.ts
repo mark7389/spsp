@@ -30,5 +30,11 @@ export class ClassDataService {
     this.classId = this.router.url.split('/')[2];
     return this.http.get(`/api/modify/classattendees/${this.token}/${this.classId}`);
   }
+  removeAttendee(id,date){
+    this.classId = this.router.url.split('/')[2];
+    return this.http.post(`/api/modify/attendee/class_update/${this.token}/${id}/${this.classId}/${date}`,{newClass:null});
+  }
+  
+
  
 }

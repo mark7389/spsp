@@ -76,5 +76,11 @@ Token = localStorage.getItem('user');
   getAttendeeID(obj){
       
   }
+  getClassesForService(classId){
+    return this.http.get(`/api/modify/classesbyservice/${this.Token}/${classId}`);
+  }
+  moveFromClass(id,classId,newClassID,date){
+    return this.http.post(`/api/modify/attendee/class_update/${this.Token}/${id}/${classId}/${date}`,{newClass:newClassID});
+  }
   
 }

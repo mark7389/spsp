@@ -26,6 +26,7 @@ import { NoteformComponent } from './modules/forms-module/components/noteform/no
 import { ImageuploadComponent } from './modules/profiles-module/components/imageupload/imageupload.component';
 import { MultipleguardianComponent } from './modules/forms-module/components/multipleguardian/multipleguardian.component';
 import { CoorHomeComponent } from './modules/coordinator-home/components/coor-home/coor-home.component';
+import { ClassAssignComponent } from './modules/forms-module/components/class-assign/class-assign.component';
 
 const appRoutes: Routes = [
   {path:'', redirectTo:'login', pathMatch:'full'},
@@ -56,6 +57,7 @@ const appRoutes: Routes = [
     ImageuploadComponent,
     MultipleguardianComponent,
     CoorHomeComponent,
+    ClassAssignComponent,
     
   ],
   imports: [
@@ -71,7 +73,7 @@ const appRoutes: Routes = [
     
   ],
   entryComponents:[
-    AttendeeformComponent,GuardianformComponent,NoteformComponent,ImageuploadComponent
+    AttendeeformComponent,GuardianformComponent,NoteformComponent,ImageuploadComponent,ClassAssignComponent
   ],
   bootstrap: [AppComponent]
 })

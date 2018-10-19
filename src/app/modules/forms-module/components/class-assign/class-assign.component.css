@@ -1,0 +1,11 @@
+.assignClass{
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+}
+.assignClass button{
+    background:#00a4e2;
+    margin:10px;
+    margin-bottom: 60px;
+    color:#fff;
+}
